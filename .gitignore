@@ -1,0 +1,29 @@
+# Data processing artifacts
+data/unused/
+
+# Processing scripts (not needed for deployment)
+scripts/
+
+# Raw data source
+anatomy_names.csv
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp_batches/
+*.tmp
+
+# Node modules (if any)
+node_modules/
+
+# Logs
+*.log

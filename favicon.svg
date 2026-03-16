@@ -1,8 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#1a1a2e"/>
-  <path d="M50 15 C30 15 20 30 20 45 C20 60 30 70 35 75 L35 85 L45 85 L45 90 L55 90 L55 85 L65 85 L65 75 C70 70 80 60 80 45 C80 30 70 15 50 15 Z" 
-        fill="#e8dcc8" stroke="#3b82f6" stroke-width="2"/>
-  <circle cx="35" cy="40" r="5" fill="#3b82f6"/>
-  <circle cx="65" cy="40" r="5" fill="#3b82f6"/>
-  <path d="M40 60 Q50 70 60 60" stroke="#3b82f6" stroke-width="2" fill="none"/>
+  <!-- 深色背景 -->
+  <rect width="100" height="100" rx="18" fill="#0f172a"/>
+  
+  <!-- 外圈发光效果 -->
+  <rect x="3" y="3" width="94" height="94" rx="15" fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.6"/>
+  
+  <!-- 解剖学心脏图标 -->
+  <path d="M50 25 
+           C35 15, 15 25, 15 45 
+           C15 60, 35 75, 50 85 
+           C65 75, 85 60, 85 45 
+           C85 25, 65 15, 50 25 Z" 
+        fill="#dc2626" 
+        stroke="#ef4444" 
+        stroke-width="2"/>
+  
+  <!-- 心脏解剖线（室间隔） -->
+  <path d="M50 25 L50 70" stroke="#991b1b" stroke-width="2" opacity="0.5"/>
+  <path d="M30 45 Q40 50 50 45 Q60 50 70 45" stroke="#991b1b" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- 主动脉弓 -->
+  <path d="M50 25 Q65 20 70 30" stroke="#ef4444" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- 高光效果 -->
+  <ellipse cx="35" cy="35" rx="8" ry="6" fill="#fca5a5" opacity="0.4"/>
 </svg>

@@ -55,68 +55,196 @@
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
         
-        /* 响应式设计 */
+        /* ==================== 响应式设计 ==================== */
+        
+        /* 大桌面 (1200px-1400px) */
+        @media (max-width: 1400px) {
+            .sidebar { width: 300px; }
+            .right-panel { width: 260px; }
+        }
+        
+        /* 标准桌面 (1024px-1200px) */
         @media (max-width: 1200px) {
-            .sidebar { width: 280px; }
-            .right-panel { width: 240px; }
+            .sidebar { width: 280px; left: 15px; }
+            .right-panel { width: 220px; right: 15px; }
         }
         
-        /* 平板横屏/小桌面 - 保持左右分栏，调整宽度 */
+        /* 小桌面/大平板 (900px-1024px) */
         @media (max-width: 1024px) {
-            .sidebar { width: 240px; left: 12px; top: 12px; bottom: 12px; }
-            .right-panel { width: 180px; right: 12px; top: 12px; bottom: 12px; }
-            .panel-box { padding: 10px; }
+            .sidebar { width: 260px; left: 12px; top: 12px; bottom: 12px; }
+            .right-panel { width: 200px; right: 12px; top: 12px; bottom: 12px; left: auto; }
+            .panel-box { padding: 12px; }
         }
         
-        /* 平板竖屏/大手机横屏 - 进一步缩小或调整布局 */
+        /* 平板 (768px-900px) */
         @media (max-width: 900px) {
-            .sidebar { width: 220px; left: 10px; top: 10px; bottom: 10px; }
-            .right-panel { width: 160px; right: 10px; top: 10px; bottom: 10px; }
+            .sidebar { width: 240px; left: 10px; top: 10px; bottom: 10px; }
+            .right-panel { width: 180px; right: 10px; top: 10px; bottom: 10px; left: auto; }
         }
         
-        /* 手机/小屏 - 改为上下堆叠布局，右侧面板保持合适宽度 */
+        /* ==================== 移动端适配 (< 768px) ==================== */
         @media (max-width: 768px) {
-            .sidebar { 
-                width: calc(100% - 20px); 
-                height: 40vh; 
-                top: auto; 
-                bottom: 10px; 
-                left: 10px; 
+            /* 隐藏原左右面板 */
+            .sidebar, .right-panel { display: none; }
+            
+            /* 显示移动端底部导航 */
+            .mobile-nav {
+                display: flex !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 56px;
+                background: var(--panel-bg);
+                backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(255,255,255,0.1);
+                z-index: 100;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0 10px;
+            }
+            
+            .mobile-nav-btn {
+                flex: 1;
+                height: 44px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-dim);
+                font-size: 11px;
+                cursor: pointer;
+                transition: 0.2s;
+                border-radius: 8px;
+                margin: 0 4px;
+            }
+            
+            .mobile-nav-btn.active {
+                color: var(--accent);
+                background: rgba(59, 130, 246, 0.15);
+            }
+            
+            .mobile-nav-icon {
+                font-size: 20px;
+                margin-bottom: 2px;
+            }
+            
+            /* 移动端面板（全屏抽屉式） */
+            .mobile-panel {
+                display: flex !important;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 56px;
+                background: var(--bg-dark);
+                z-index: 50;
+                flex-direction: column;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-panel.active {
+                transform: translateY(0);
+            }
+            
+            .mobile-panel-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                background: var(--panel-bg);
+            }
+            
+            .mobile-panel-title {
+                font-size: 16px;
+                font-weight: 600;
+            }
+            
+            .mobile-panel-close {
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                cursor: pointer;
+                border-radius: 8px;
+            }
+            
+            .mobile-panel-close:active {
+                background: rgba(255,255,255,0.1);
+            }
+            
+            .mobile-panel-content {
+                flex: 1;
+                overflow-y: auto;
+                padding: 12px 16px;
+            }
+            
+            /* 移动端搜索栏 */
+            .mobile-search-box {
+                display: block !important;
+                position: fixed;
+                top: 10px;
+                left: 10px;
                 right: 10px;
+                z-index: 40;
             }
-            .right-panel { 
-                width: 200px; 
-                left: auto;
-                right: 10px; 
-                top: 10px; 
-                bottom: auto;
-                height: auto;
-                max-height: 28vh;
+            
+            .mobile-search-box input {
+                width: 100%;
+                background: var(--panel-bg);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 10px;
+                padding: 12px 16px;
+                color: #fff;
+                font-size: 15px;
+                outline: none;
             }
-            .sidebar-header { padding-bottom: 8px; margin-bottom: 8px; }
-            .system-tabs { grid-template-columns: repeat(4, 1fr); }
-            h1 { font-size: 15px !important; }
+            
+            /* 调整3D画布 */
+            #canvas-container {
+                bottom: 56px;
+            }
+            
+            /* 加载界面适配 */
+            .loading-overlay { font-size: 14px; }
         }
         
+        /* ==================== 小屏手机 (< 480px) ==================== */
         @media (max-width: 480px) {
-            .sidebar { height: 45vh; bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); }
-            .right-panel { width: 160px; right: 8px; top: 8px; max-height: 25vh; }
-            .system-tabs { grid-template-columns: repeat(3, 1fr); }
-            .model-item { padding: 8px 10px; font-size: 12px; }
-            .layer-item { padding: 5px 0; }
+            .mobile-nav { height: 52px; padding: 0 6px; }
+            .mobile-nav-btn { font-size: 10px; height: 40px; margin: 0 2px; }
+            .mobile-nav-icon { font-size: 18px; }
+            .mobile-panel { bottom: 52px; }
+            .mobile-panel-header { padding: 10px 12px; }
+            .mobile-panel-title { font-size: 15px; }
+            .mobile-panel-content { padding: 10px 12px; }
+            .mobile-search-box input { padding: 10px 14px; font-size: 14px; }
+            .system-tabs { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .system-tab { padding: 10px 6px; font-size: 12px; }
+            .model-item { padding: 12px; font-size: 14px; }
+            .layer-item { padding: 10px 0; }
+            h1 { font-size: 16px !important; }
         }
         
-        @media (max-width: 360px) {
-            .system-tabs { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        /* 触摸设备优化 */
+        /* ==================== 触摸设备优化 ==================== */
         @media (hover: none) and (pointer: coarse) {
             .model-item:hover { background: transparent; }
-            .model-item:active { background: rgba(255,255,255,0.1); }
+            .model-item:active { background: rgba(255,255,255,0.15); }
             .system-tab:hover { background: rgba(255,255,255,0.05); }
-            ::-webkit-scrollbar { width: 4px; }
+            .system-tab:active { background: rgba(255,255,255,0.15); }
+            ::-webkit-scrollbar { width: 3px; }
+            
+            /* 增大触摸区域 */
+            .layer-checkbox { width: 22px; height: 22px; }
         }
+        
+        /* 移动端元素默认隐藏 */
+        .mobile-nav, .mobile-panel, .mobile-search-box { display: none; }
     </style>
 </head>
 <body>
@@ -145,6 +273,50 @@
             <div id="layer-controls"></div>
         </div>
     </div>
+    
+    <!-- 移动端搜索栏 -->
+    <div class="mobile-search-box">
+        <input type="text" id="mobile-search" placeholder="搜索模型...">
+    </div>
+    
+    <!-- 移动端面板：模型列表 -->
+    <div class="mobile-panel" id="mobile-panel-list">
+        <div class="mobile-panel-header">
+            <span class="mobile-panel-title">🫀 模型列表</span>
+            <div class="mobile-panel-close" onclick="closeMobilePanel()">✕</div>
+        </div>
+        <div class="mobile-panel-content">
+            <div class="system-tabs" id="mobile-system-tabs"></div>
+            <div class="model-list" id="mobile-model-list" style="margin-top: 10px;"></div>
+        </div>
+    </div>
+    
+    <!-- 移动端面板：图层控制 -->
+    <div class="mobile-panel" id="mobile-panel-layers">
+        <div class="mobile-panel-header">
+            <span class="mobile-panel-title">🔍 图层控制</span>
+            <div class="mobile-panel-close" onclick="closeMobilePanel()">✕</div>
+        </div>
+        <div class="mobile-panel-content">
+            <div id="mobile-layer-controls"></div>
+        </div>
+    </div>
+    
+    <!-- 移动端底部导航 -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-btn active" data-panel="none" onclick="showMobilePanel('none')">
+            <span class="mobile-nav-icon">🏠</span>
+            <span>主页</span>
+        </div>
+        <div class="mobile-nav-btn" data-panel="list" onclick="showMobilePanel('list')">
+            <span class="mobile-nav-icon">📋</span>
+            <span>模型</span>
+        </div>
+        <div class="mobile-nav-btn" data-panel="layers" onclick="showMobilePanel('layers')">
+            <span class="mobile-nav-icon">🔍</span>
+            <span>图层</span>
+        </div>
+    </div>
 
     <script>
         const SystemConfig = {
@@ -168,7 +340,7 @@
             constructor(scene, camera, renderer, controls) {
                 this.scene = scene; this.camera = camera; this.renderer = renderer; this.controls = controls;
                 this.loadedModels = {}; SystemOrder.forEach(s => this.loadedModels[s] = new Map());
-                this.layerVisibility = {}; SystemOrder.forEach(s => this.layerVisibility[s] = s === 'skeletal');
+                this.layerVisibility = {}; SystemOrder.forEach(s => this.layerVisibility[s] = s === 'skeletal' || s === 'muscular');
                 this.materials = this._createMaterials();
                 this.highlightedModel = null; this.originalMaterials = new Map();
             }
@@ -276,7 +448,7 @@
                                 if (!c.userData.dimMat) {
                                     c.userData.dimMat = c.userData.baseMaterial.clone();
                                     c.userData.dimMat.transparent = true;
-                                    c.userData.dimMat.opacity = 0.25;
+                                    c.userData.dimMat.opacity = 0.55;
                                 }
                                 c.material = c.userData.dimMat;
                             } else {
@@ -323,12 +495,29 @@
         }
 
         async function init() {
+            // 开启 Three.js 内部缓存
+            THREE.Cache.enabled = true;
+
             try { 
-                const res = await fetch('data/anatomy_data_simple_refined.json'); AnatomyData = await res.json(); 
+                // 增加时间戳防止 JSON 被浏览器强缓存，确保手动修改后立即可见
+                const res = await fetch(`data/anatomy_data_simple_refined.json?v=${new Date().getTime()}`); 
+                AnatomyData = await res.json(); 
                 SystemOrder.forEach(s => SystemConfig[s].count = AnatomyData[s]?.length || 0);
-            } catch(e) { console.error(e); return; }
-            initUI(); init3D(); setupInteraction(); layerSystem.loadSystem('skeletal'); updateModelList();
-            setTimeout(() => { document.getElementById('loading').style.opacity = '0'; setTimeout(() => document.getElementById('loading').style.display = 'none', 500); }, 2000);
+            } catch(e) { 
+                console.error('Data load failed:', e); 
+                return; 
+            }
+            
+            initUI(); init3D(); setupInteraction(); 
+            // 默认加载骨骼和肌肉系统
+            layerSystem.loadSystem('skeletal'); 
+            layerSystem.loadSystem('muscular');
+            
+            updateModelList();
+            setTimeout(() => { 
+                document.getElementById('loading').style.opacity = '0'; 
+                setTimeout(() => document.getElementById('loading').style.display = 'none', 500); 
+            }, 2000);
         }
 
         function initUI() {
@@ -342,8 +531,9 @@
             const layers = document.getElementById('layer-controls');
             SystemOrder.forEach(s => { 
                 const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); const d = document.createElement('div'); 
-                d.className = 'layer-item' + (s==='skeletal'?' active':''); d.dataset.system = s; 
-                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name} <span style="font-size:11px; font-weight:400; opacity:0.7;">${cfg.nameEn}</span></div><div style="font-size:10px;color:#71717a">${cfg.count} models</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; 
+                const isDefaultActive = s==='skeletal' || s==='muscular';
+                d.className = 'layer-item' + (isDefaultActive?' active':''); d.dataset.system = s; 
+                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name} <span style="font-size:11px; font-weight:400; opacity:0.7;">${cfg.nameEn}</span></div><div style="font-size:10px;color:#71717a">${cfg.count} models</div></div></div><div class="layer-checkbox">${isDefaultActive?'✓':''}</div>`; 
                 d.onclick = () => globalToggleLayer(s); layers.appendChild(d); 
             });
             document.getElementById('search-box').addEventListener('input', e => {
@@ -357,6 +547,118 @@
                 performGlobalSearch(v);
             });
             tooltip = document.getElementById('tooltip');
+            
+            // 初始化移动端UI
+            initMobileUI();
+        }
+        
+        // ==================== 移动端UI函数 ====================
+        function initMobileUI() {
+            // 移动端系统标签
+            const mobileTabs = document.getElementById('mobile-system-tabs');
+            SystemOrder.forEach(s => { 
+                const t = document.createElement('div'); 
+                t.className = 'system-tab' + (s==='skeletal'?' active':''); 
+                t.innerHTML = `<div style="font-size:12px;">${SystemConfig[s].name}</div>`; 
+                t.onclick = () => { switchSystem(s); updateMobileModelList(); }; 
+                mobileTabs.appendChild(t); 
+            });
+            
+            // 移动端图层控制
+            const mobileLayers = document.getElementById('mobile-layer-controls');
+            SystemOrder.forEach(s => { 
+                const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); 
+                const d = document.createElement('div'); 
+                const isDefaultActiveMobile = s==='skeletal' || s==='muscular';
+                d.className = 'layer-item' + (isDefaultActiveMobile?' active':''); 
+                d.dataset.system = s; 
+                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:14px;font-weight:500">${cfg.name} <span style="font-size:12px; font-weight:400; opacity:0.7;">${cfg.nameEn}</span></div><div style="font-size:11px;color:#71717a">${cfg.count} models</div></div></div><div class="layer-checkbox">${isDefaultActiveMobile?'✓':''}</div>`; 
+                d.onclick = () => { globalToggleLayer(s); updateMobileLayerUI(); }; 
+                mobileLayers.appendChild(d); 
+            });
+            
+            // 移动端搜索
+            document.getElementById('mobile-search').addEventListener('input', e => {
+                const v = e.target.value.toLowerCase().trim();
+                if (v.length === 0) {
+                    updateMobileModelList();
+                    return;
+                }
+                performGlobalSearch(v);
+            });
+            
+            // 初始化移动端模型列表
+            updateMobileModelList();
+        }
+        
+        function updateMobileModelList() {
+            const l = document.getElementById('mobile-model-list');
+            l.innerHTML = '';
+            (AnatomyData[currentSystem] || []).forEach(m => {
+                const d = document.createElement('div');
+                d.className = 'model-item';
+                d.dataset.id = m.id;
+                const [cn, en] = m.name.includes(' | ') ? m.name.split(' | ') : [m.name, ''];
+                d.innerHTML = `<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><span style="color:#e4e4e7;">${cn}</span><span style="color:#71717a;font-size:12px;margin-left:6px;">${en}</span></span>`;
+                d.onclick = () => {
+                    selectModel(m);
+                    closeMobilePanel();
+                };
+                l.appendChild(d);
+            });
+        }
+        
+        function updateMobileLayerUI() {
+            document.querySelectorAll('#mobile-layer-controls .layer-item').forEach(item => {
+                const s = item.dataset.system;
+                const isActive = layerSystem.layerVisibility[s];
+                item.classList.toggle('active', isActive);
+                item.querySelector('.layer-checkbox').textContent = isActive ? '✓' : '';
+            });
+        }
+        
+        let currentMobilePanel = null;
+        
+        function showMobilePanel(panel) {
+            // 关闭当前面板
+            closeMobilePanel();
+            
+            if (panel === 'none') {
+                currentMobilePanel = null;
+                updateMobileNav();
+                return;
+            }
+            
+            // 打开新面板
+            const panelEl = document.getElementById('mobile-panel-' + panel);
+            if (panelEl) {
+                panelEl.classList.add('active');
+                currentMobilePanel = panel;
+                
+                // 更新列表内容
+                if (panel === 'list') {
+                    const query = document.getElementById('mobile-search').value.trim();
+                    if (query) {
+                        performGlobalSearch(query);
+                    } else {
+                        updateMobileModelList();
+                    }
+                }
+            }
+            updateMobileNav();
+        }
+        
+        function closeMobilePanel() {
+            document.querySelectorAll('.mobile-panel').forEach(p => p.classList.remove('active'));
+            currentMobilePanel = null;
+            updateMobileNav();
+        }
+        
+        function updateMobileNav() {
+            document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+                const panel = btn.dataset.panel;
+                btn.classList.toggle('active', currentMobilePanel === panel || (panel === 'none' && !currentMobilePanel));
+            });
         }
 
         function init3D() {
@@ -402,17 +704,27 @@
                 layerSystem.clearHighlight();
             }
             currentSystem = s; 
-            document.querySelectorAll('.system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); 
+            // 更新桌面端标签
+            document.querySelectorAll('#system-tabs .system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); 
+            // 更新移动端标签
+            document.querySelectorAll('#mobile-system-tabs .system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); 
             updateModelList(); 
         }
         function updateModelList() { 
-            const l = document.getElementById('model-list'); l.innerHTML = ''; 
+            // 桌面端列表
+            const l = document.getElementById('model-list'); 
+            l.innerHTML = ''; 
             (AnatomyData[currentSystem]||[]).forEach(m => { 
-                const d = document.createElement('div'); d.className = 'model-item'; d.dataset.id = m.id; 
+                const d = document.createElement('div'); 
+                d.className = 'model-item'; 
+                d.dataset.id = m.id; 
                 const [cn, en] = m.name.includes(' | ') ? m.name.split(' | ') : [m.name, ''];
                 d.innerHTML = `<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><span style="color:#e4e4e7;">${cn}</span><span style="color:#71717a;font-size:11px;margin-left:6px;">${en}</span></span>`;
-                d.onclick = () => selectModel(m); l.appendChild(d); 
+                d.onclick = () => selectModel(m); 
+                l.appendChild(d); 
             }); 
+            // 同步更新移动端列表
+            updateMobileModelList();
         }
 
         function selectModel(m) { 
@@ -453,8 +765,14 @@
         
         // 全局搜索功能
         function performGlobalSearch(query) {
-            const l = document.getElementById('model-list');
-            l.innerHTML = '';
+            const isMobile = window.innerWidth <= 768;
+            const desktopList = document.getElementById('model-list');
+            const mobileList = document.getElementById('mobile-model-list');
+            
+            if (!isMobile) {
+                desktopList.innerHTML = '';
+            }
+            mobileList.innerHTML = '';
             
             let resultCount = 0;
             SystemOrder.forEach(system => {
@@ -462,28 +780,49 @@
                 models.forEach(m => {
                     if (m.name.toLowerCase().includes(query) || m.id.toLowerCase().includes(query)) {
                         resultCount++;
-                        const d = document.createElement('div');
-                        d.className = 'model-item';
-                        d.dataset.id = m.id;
-                        d.dataset.system = system;
                         const [cn, en] = m.name.includes(' | ') ? m.name.split(' | ') : [m.name, ''];
                         const systemCfg = SystemConfig[system];
-                        d.innerHTML = `
+                        
+                        // 桌面端结果
+                        if (!isMobile) {
+                            const d = document.createElement('div');
+                            d.className = 'model-item';
+                            d.dataset.id = m.id;
+                            d.dataset.system = system;
+                            d.innerHTML = `
+                                <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                    <span style="color:#e4e4e7;">${cn}</span>
+                                    <span style="color:#71717a;font-size:11px;margin-left:6px;">${en}</span>
+                                </span>
+                                <span style="font-size:10px;color:${'#' + systemCfg.color.toString(16).padStart(6,'0')};margin-left:8px;flex-shrink:0;">${systemCfg.name}</span>
+                            `;
+                            d.onclick = () => selectGlobalModel(m, system);
+                            desktopList.appendChild(d);
+                        }
+                        
+                        // 移动端结果
+                        const md = document.createElement('div');
+                        md.className = 'model-item';
+                        md.dataset.id = m.id;
+                        md.dataset.system = system;
+                        md.innerHTML = `
                             <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                                 <span style="color:#e4e4e7;">${cn}</span>
-                                <span style="color:#71717a;font-size:11px;margin-left:6px;">${en}</span>
+                                <span style="color:#71717a;font-size:12px;margin-left:6px;">${en}</span>
                             </span>
-                            <span style="font-size:10px;color:${'#' + systemCfg.color.toString(16).padStart(6,'0')};margin-left:8px;flex-shrink:0;">${systemCfg.name}</span>
+                            <span style="font-size:11px;color:${'#' + systemCfg.color.toString(16).padStart(6,'0')};margin-left:8px;flex-shrink:0;">${systemCfg.name}</span>
                         `;
-                        d.onclick = () => selectGlobalModel(m, system);
-                        l.appendChild(d);
+                        md.onclick = () => { selectGlobalModel(m, system); closeMobilePanel(); };
+                        mobileList.appendChild(md);
                     }
                 });
             });
             
             // 如果没有结果，显示提示
             if (resultCount === 0) {
-                l.innerHTML = '<div style="padding:20px;text-align:center;color:#71717a;font-size:13px;">未找到匹配的模型</div>';
+                const msg = '<div style="padding:20px;text-align:center;color:#71717a;font-size:14px;">未找到匹配的模型</div>';
+                if (!isMobile) desktopList.innerHTML = msg;
+                mobileList.innerHTML = msg;
             }
         }
         
@@ -528,9 +867,20 @@
             // 清除高亮
             layerSystem.clearHighlight();
             document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active'));
-            const it = document.querySelector(`.layer-item[data-system="${s}"]`), a = it.classList.toggle('active'); 
-            it.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; 
-            layerSystem.toggleLayer(s, a); 
+            // 桌面端UI
+            const desktopItem = document.querySelector(`#layer-controls .layer-item[data-system="${s}"]`);
+            if (desktopItem) {
+                const a = desktopItem.classList.toggle('active'); 
+                desktopItem.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; 
+            }
+            // 移动端UI
+            const mobileItem = document.querySelector(`#mobile-layer-controls .layer-item[data-system="${s}"]`);
+            if (mobileItem) {
+                const a = !layerSystem.layerVisibility[s]; // 将要设置的状态
+                mobileItem.classList.toggle('active', a); 
+                mobileItem.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; 
+            }
+            layerSystem.toggleLayer(s, !layerSystem.layerVisibility[s]); 
         }
         init();
     </script>

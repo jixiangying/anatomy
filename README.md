@@ -1,10 +1,22 @@
 # 人体解剖学3D交互图谱 | Human Anatomy Explorer
 
-基于 **BodyParts3D** 真实MRI扫描数据的3D人体解剖可视化应用，支持11大系统交互式浏览。
+<div align="center">
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Data: CC BY-SA 2.1](https://img.shields.io/badge/Data-CC%20BY--SA%202.1-green.svg)](https://creativecommons.org/licenses/by-sa/2.1/jp/)
+
+**[中文](#中文)** | **[English](#english)**
+
+</div>
 
 ---
 
-## ✨ 功能特点
+<a name="中文"></a>
+## 🇨🇳 中文
+
+基于 **BodyParts3D/ISA** 真实MRI扫描数据的3D人体解剖可视化应用，支持11大系统交互式浏览。
+
+### ✨ 功能特点
 
 - ✅ **真实人体模型** - 基于2mm MRI扫描的医学级数据
 - ✅ **11大解剖系统** - 骨骼、肌肉、心血管、神经、消化、呼吸、泌尿、生殖、内分泌、淋巴、皮肤
@@ -15,14 +27,12 @@
 - ✅ **双向交互** - 点击列表项或3D模型相互联动
 - ✅ **平滑动画** - 相机自动聚焦到选中部位
 
----
+### 🚀 快速开始
 
-## 🚀 快速开始
-
-### 在线访问
+**在线访问**
 🌐 **GitHub Pages**: https://jixiangying.github.io/anatomy/
 
-### 本地运行
+**本地运行**
 ```bash
 git clone https://github.com/jixiangying/anatomy.git
 cd anatomy
@@ -30,9 +40,7 @@ python3 -m http.server 3000
 # 浏览器访问 http://localhost:3000
 ```
 
----
-
-## 🎮 使用说明
+### 🎮 使用说明
 
 | 操作 | 功能 |
 |------|------|
@@ -45,49 +53,62 @@ python3 -m http.server 3000
 | 点击空白处 | 取消选择，恢复全不透明 |
 | 右侧图层控制 | 开关各系统显示 |
 
----
+### ⚠️ 数据说明
 
-## 📁 项目结构
+**AI 辅助分类与翻译**
+
+> ⚠️ **注意**：本项目的解剖学分类和中文翻译均由 **AI 基于 BodyParts3D 官网 ISA 相关说明文档** 自动生成，可能存在以下问题：
+> - 解剖学术语翻译不够精准
+> - 模型分类归属可能存在偏差
+> - 个别部位命名不符合中文医学惯例
+>
+> **如需更正**：请直接修改 `data/anatomy_data_simple_refined.json` 文件中的对应字段，格式如下：
+> ```json
+> {
+>   "id": "FJ3152",
+>   "name": "右髋骨 | right hip bone",
+>   "system": "骨骼系统",
+>   "nameEn": "right hip bone",
+>   "nameCn": "右髋骨",
+>   "systemEn": "Skeletal System"
+> }
+> ```
+> 欢迎提交 Pull Request 帮助改进数据质量！
+
+### 📁 项目结构
 
 ```
 Anatomy/
 ├── index.html                      # 主页面 - 3D解剖查看器
 ├── README.md                       # 项目说明
-├── anatomy_names.csv               # 2234条解剖学术语对照表
 ├── favicon.svg                     # 网站图标
+├── .gitignore                      # Git忽略文件
 │
 ├── js/                             # JavaScript库
 │   ├── OBJLoader.js               # Three.js OBJ加载器
 │   └── OrbitControls.js           # 轨道控制器
 │
 ├── data/                           # 解剖学数据
-│   ├── anatomy_data_simple_refined.json  # 前端使用的结构化数据
-│   ├── model_classification_table.json   # 模型分类表
+│   ├── anatomy_data_simple_refined.json  # 前端使用的结构化数据(2,234条)
 │   └── isa_*.txt                   # BodyParts3D官方元数据
 │
-├── scripts/                        # 数据处理脚本
-│   ├── refine_anatomy.py          # 术语翻译与精炼
-│   └── rebuild_json_final_*.py    # 数据转换脚本
-│
 └── isa_BP3D_4.0_obj_99/           # 3D模型文件夹
-    └── FJ*.obj                    # 2,234个OBJ文件（约210MB）
+    └── FJ*.obj                    # 2,234个OBJ文件（约463MB）
 ```
 
----
+### 🏥 数据来源
 
-## 🏥 数据来源
-
-- **项目**: BodyParts3D / Anatomography
+- **项目**: BodyParts3D / ISA (Intuitive Surgical Anatomy)
 - **机构**: 日本东京大学生命科学数据库中心
 - **技术**: 2mm间隔全身MRI扫描
 - **许可**: CC BY-SA 2.1 Japan
-- **模型数**: 1,258个OBJ文件（约210MB）
+- **模型数**: 2,234个OBJ文件
 
-### 官方下载
+**官方下载**
 - 官网: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/
 - 模型文件: `isa_BP3D_4.0_obj_99.zip`
 
-### 引用格式
+**引用格式**
 ```
 BodyParts3D, © The Database Center for Life Science 
 licensed under CC Attribution-Share Alike 2.1 Japan
@@ -96,24 +117,134 @@ http://dbarchive.biosciencedbc.jp/en/bodyparts3d/
 
 ---
 
-## 🛠️ 技术栈
+<a name="english"></a>
+## 🇬🇧 English
 
-- **Three.js r128** - 3D渲染引擎
-- **Tailwind CSS** - UI样式
-- **原生JavaScript** - 应用逻辑
-- **Python 3** - 数据处理
+A 3D human anatomy visualization application based on **BodyParts3D/ISA** real MRI scan data, supporting interactive browsing of 11 major anatomical systems.
+
+### ✨ Features
+
+- ✅ **Real Human Models** - Medical-grade data based on 2mm MRI scans
+- ✅ **11 Anatomical Systems** - Skeletal, Muscular, Cardiovascular, Nervous, Digestive, Respiratory, Urinary, Reproductive, Endocrine, Lymphatic, Integumentary
+- ✅ **Bilingual Labels** - Chinese + English anatomical terminology
+- ✅ **Global Search** - One-click search across all systems, auto-open corresponding layer
+- ✅ **Smart Highlight** - Highlight selected model, others become semi-transparent
+- ✅ **Layer Control** - Toggle individual systems, freely combine displays
+- ✅ **Bidirectional Interaction** - Click list items or 3D models to sync with each other
+- ✅ **Smooth Animation** - Camera automatically focuses on selected parts
+
+### 🚀 Quick Start
+
+**Online Access**
+🌐 **GitHub Pages**: https://jixiangying.github.io/anatomy/
+
+**Local Run**
+```bash
+git clone https://github.com/jixiangying/anatomy.git
+cd anatomy
+python3 -m http.server 3000
+# Open http://localhost:3000 in browser
+```
+
+### 🎮 Usage
+
+| Action | Function |
+|--------|----------|
+| Left drag | Rotate view |
+| Right drag | Pan view |
+| Scroll | Zoom |
+| Search box | Global search for all system parts |
+| Click left list | Highlight 3D model and focus |
+| Click 3D model | Auto-highlight and scroll left list |
+| Click blank area | Deselect, restore full opacity |
+| Right layer control | Toggle system display |
+
+### ⚠️ Data Notice
+
+**AI-Assisted Classification & Translation**
+
+> ⚠️ **Note**: The anatomical classifications and Chinese translations in this project were **automatically generated by AI based on BodyParts3D ISA documentation** and may contain:
+> - Imprecise anatomical terminology translations
+> - Potential deviations in model classification
+> - Individual naming inconsistencies with Chinese medical conventions
+>
+> **To Correct**: Please modify the corresponding fields in `data/anatomy_data_simple_refined.json`:
+> ```json
+> {
+>   "id": "FJ3152",
+>   "name": "右髋骨 | right hip bone",
+>   "system": "骨骼系统",
+>   "nameEn": "right hip bone",
+>   "nameCn": "右髋骨",
+>   "systemEn": "Skeletal System"
+> }
+> ```
+> Pull Requests are welcome to help improve data quality!
+
+### 📁 Project Structure
+
+```
+Anatomy/
+├── index.html                      # Main page - 3D anatomy viewer
+├── README.md                       # Project documentation
+├── favicon.svg                     # Website icon
+├── .gitignore                      # Git ignore file
+│
+├── js/                             # JavaScript libraries
+│   ├── OBJLoader.js               # Three.js OBJ loader
+│   └── OrbitControls.js           # Orbit controls
+│
+├── data/                           # Anatomical data
+│   ├── anatomy_data_simple_refined.json  # Frontend structured data (2,234 items)
+│   └── isa_*.txt                   # BodyParts3D official metadata
+│
+└── isa_BP3D_4.0_obj_99/           # 3D models folder
+    └── FJ*.obj                    # 2,234 OBJ files (~463MB)
+```
+
+### 🏥 Data Source
+
+- **Project**: BodyParts3D / ISA (Intuitive Surgical Anatomy)
+- **Institution**: Database Center for Life Science, University of Tokyo
+- **Technology**: Whole-body MRI scan at 2mm intervals
+- **License**: CC BY-SA 2.1 Japan
+- **Models**: 2,234 OBJ files
+
+**Official Download**
+- Website: https://dbarchive.biosciencedbc.jp/data/bodyparts3d/
+- Model file: `isa_BP3D_4.0_obj_99.zip`
+
+**Citation Format**
+```
+BodyParts3D, © The Database Center for Life Science 
+licensed under CC Attribution-Share Alike 2.1 Japan
+http://dbarchive.biosciencedbc.jp/en/bodyparts3d/
+```
 
 ---
 
-## 📄 许可
+## 🛠️ Tech Stack | 技术栈
 
-本项目代码遵循 MIT 许可。
+- **Three.js r128** - 3D rendering engine | 3D渲染引擎
+- **Tailwind CSS** - UI styling | UI样式
+- **Vanilla JavaScript** - Application logic | 应用逻辑
+- **Python 3** - Data processing | 数据处理
 
-BodyParts3D数据遵循 **CC BY-SA 2.1 Japan** 许可：
-- ✅ 允许自由使用、修改、分发
-- ✅ 允许商业使用
-- ⚠️ 需要注明出处
+## 📄 License | 许可
+
+This project code is licensed under **MIT License**.
+
+BodyParts3D data is licensed under **CC BY-SA 2.1 Japan**:
+- ✅ Free to use, modify, and distribute | 允许自由使用、修改、分发
+- ✅ Commercial use allowed | 允许商业使用
+- ⚠️ Attribution required | 需要注明出处
 
 ---
+
+<div align="center">
 
 Created with ❤️ for anatomy education
+
+**人体解剖学教育 · Human Anatomy Education**
+
+</div>
