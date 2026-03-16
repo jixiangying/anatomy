@@ -1,0 +1,1143 @@
+[
+  {
+    "id": "FJ1282",
+    "name": "\u5de6\u524d | anterior chamber of left eyeball",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "anterior chamber of left eyeball",
+    "nameCn": "\u5de6\u524d"
+  },
+  {
+    "id": "FJ1283",
+    "name": "\u5de6\u524d\u795e\u7ecf | left anterior ethmoidal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left anterior ethmoidal nerve",
+    "nameCn": "\u5de6\u524d\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1287",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left corona ciliaris",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left corona ciliaris",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1288",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left ciliary ganglion",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left ciliary ganglion",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1289",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left cornea",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left cornea",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1290",
+    "name": "\u5de6\u989d\u795e\u7ecf | left frontal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left frontal nerve",
+    "nameCn": "\u5de6\u989d\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1293",
+    "name": "\u5de6\u795e\u7ecf\u7684\u4e0b | inferior branch of left oculomotor nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "inferior branch of left oculomotor nerve",
+    "nameCn": "\u5de6\u795e\u7ecf\u7684\u4e0b"
+  },
+  {
+    "id": "FJ1296",
+    "name": "\u5de6\u795e\u7ecf | left infratrochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left infratrochlear nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1298",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lacrimal canaliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal canaliculus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1299",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lacrimal gland",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal gland",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1300",
+    "name": "\u5de6\u795e\u7ecf | left lacrimal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1301",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lacrimal lake",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal lake",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1302",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left nasolacrimal duct",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left nasolacrimal duct",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1305",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lens",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lens",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1309",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lacrimal sac",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal sac",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1310",
+    "name": "\u5de6\u795e\u7ecf | left nasociliary nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left nasociliary nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1311",
+    "name": "\u5de6\u795e\u7ecf\u5de6 | communicating branch of left nasociliary nerve with left ciliary ganglion",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "communicating branch of left nasociliary nerve with left ciliary ganglion",
+    "nameCn": "\u5de6\u795e\u7ecf\u5de6"
+  },
+  {
+    "id": "FJ1312",
+    "name": "\u5de6\u795e\u7ecf | left ophthalmic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left ophthalmic nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1313",
+    "name": "\u5de6\u795e\u7ecf | left optic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left optic nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1315",
+    "name": "\u5de6\u540e\u795e\u7ecf | left posterior ethmoidal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left posterior ethmoidal nerve",
+    "nameCn": "\u5de6\u540e\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1316",
+    "name": "\u5de6 | optic part of left retina",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "optic part of left retina",
+    "nameCn": "\u5de6"
+  },
+  {
+    "id": "FJ1317",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left sclera",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left sclera",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1318",
+    "name": "\u5de6\u795e\u7ecf | left long ciliary nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left long ciliary nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1319",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | subdivision of parasympathetic nervous system",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "subdivision of parasympathetic nervous system",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1320",
+    "name": "\u5de6 | suspensory ligament of left lens",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "suspensory ligament of left lens",
+    "nameCn": "\u5de6"
+  },
+  {
+    "id": "FJ1321",
+    "name": "\u5de6\u795e\u7ecf\u7684\u4e0a | superior branch of left oculomotor nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "superior branch of left oculomotor nerve",
+    "nameCn": "\u5de6\u795e\u7ecf\u7684\u4e0a"
+  },
+  {
+    "id": "FJ1325",
+    "name": "\u5de6\u795e\u7ecf | left supra-orbital nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left supra-orbital nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1326",
+    "name": "\u5de6\u795e\u7ecf | left supratrochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left supratrochlear nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1330",
+    "name": "\u5de6\u795e\u7ecf | left trochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left trochlear nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1331",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left vitreous body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left vitreous body",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1332",
+    "name": "\u53f3\u524d | anterior chamber of right eyeball",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "anterior chamber of right eyeball",
+    "nameCn": "\u53f3\u524d"
+  },
+  {
+    "id": "FJ1333",
+    "name": "\u53f3\u524d\u795e\u7ecf | right anterior ethmoidal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right anterior ethmoidal nerve",
+    "nameCn": "\u53f3\u524d\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1338",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right corona ciliaris",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right corona ciliaris",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1339",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right ciliary ganglion",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right ciliary ganglion",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1340",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right cornea",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right cornea",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1341",
+    "name": "\u53f3\u989d\u795e\u7ecf | right frontal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right frontal nerve",
+    "nameCn": "\u53f3\u989d\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1344",
+    "name": "\u53f3\u795e\u7ecf\u7684\u4e0b | inferior branch of right oculomotor nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "inferior branch of right oculomotor nerve",
+    "nameCn": "\u53f3\u795e\u7ecf\u7684\u4e0b"
+  },
+  {
+    "id": "FJ1347",
+    "name": "\u53f3\u795e\u7ecf | right infratrochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right infratrochlear nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1349",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lacrimal canaliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal canaliculus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1350",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lacrimal gland",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal gland",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1351",
+    "name": "\u53f3\u795e\u7ecf | right lacrimal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1352",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lacrimal lake",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal lake",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1353",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right nasolacrimal duct",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right nasolacrimal duct",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1356",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lens",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lens",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1360",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lacrimal sac",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal sac",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1361",
+    "name": "\u53f3\u795e\u7ecf | right nasociliary nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right nasociliary nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1362",
+    "name": "\u53f3\u795e\u7ecf\u53f3 | communicating branch of right nasociliary nerve with right ciliary ganglion",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "communicating branch of right nasociliary nerve with right ciliary ganglion",
+    "nameCn": "\u53f3\u795e\u7ecf\u53f3"
+  },
+  {
+    "id": "FJ1363",
+    "name": "\u53f3\u795e\u7ecf | right ophthalmic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right ophthalmic nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1364",
+    "name": "\u53f3\u795e\u7ecf | right optic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right optic nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1366",
+    "name": "\u53f3\u540e\u795e\u7ecf | right posterior ethmoidal nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right posterior ethmoidal nerve",
+    "nameCn": "\u53f3\u540e\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1367",
+    "name": "\u53f3 | optic part of right retina",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "optic part of right retina",
+    "nameCn": "\u53f3"
+  },
+  {
+    "id": "FJ1368",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right sclera",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right sclera",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1369",
+    "name": "\u53f3\u795e\u7ecf | right long ciliary nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right long ciliary nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1370",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | subdivision of parasympathetic nervous system",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "subdivision of parasympathetic nervous system",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1371",
+    "name": "\u53f3 | suspensory ligament of right lens",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "suspensory ligament of right lens",
+    "nameCn": "\u53f3"
+  },
+  {
+    "id": "FJ1372",
+    "name": "\u53f3\u795e\u7ecf\u7684\u4e0a | superior branch of right oculomotor nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "superior branch of right oculomotor nerve",
+    "nameCn": "\u53f3\u795e\u7ecf\u7684\u4e0a"
+  },
+  {
+    "id": "FJ1376",
+    "name": "\u53f3\u795e\u7ecf | right supra-orbital nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right supra-orbital nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1377",
+    "name": "\u53f3\u795e\u7ecf | right supratrochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right supratrochlear nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1381",
+    "name": "\u53f3\u795e\u7ecf | right trochlear nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right trochlear nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1382",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right vitreous body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right vitreous body",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1471",
+    "name": "\u53f3 | flexor retinaculum of right wrist",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "flexor retinaculum of right wrist",
+    "nameCn": "\u53f3"
+  },
+  {
+    "id": "FJ1471M",
+    "name": "\u5de6 | flexor retinaculum of left wrist",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "flexor retinaculum of left wrist",
+    "nameCn": "\u5de6"
+  },
+  {
+    "id": "FJ1732",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left angular gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left angular gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1733",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right angular gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right angular gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1734",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1735",
+    "name": "\u5de6\u4e0a\u7684 | brachium of left superior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "brachium of left superior colliculus",
+    "nameCn": "\u5de6\u4e0a\u7684"
+  },
+  {
+    "id": "FJ1736",
+    "name": "\u53f3\u4e0a\u7684 | brachium of right superior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "brachium of right superior colliculus",
+    "nameCn": "\u53f3\u4e0a\u7684"
+  },
+  {
+    "id": "FJ1738",
+    "name": "\u7684 | region of ventricular system of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "region of ventricular system of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1739",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left cingulate gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left cingulate gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1740",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right cingulate gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right cingulate gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1741",
+    "name": "\u7684 | commissure of fornix of forebrain",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "commissure of fornix of forebrain",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1742",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1744",
+    "name": "\u5de6\u4e0b\u989d | left inferior frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left inferior frontal gyrus",
+    "nameCn": "\u5de6\u4e0b\u989d"
+  },
+  {
+    "id": "FJ1745",
+    "name": "\u53f3\u4e0b\u989d | right inferior frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right inferior frontal gyrus",
+    "nameCn": "\u53f3\u4e0b\u989d"
+  },
+  {
+    "id": "FJ1746",
+    "name": "\u5de6\u4e0b\u989e | left inferior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left inferior temporal gyrus",
+    "nameCn": "\u5de6\u4e0b\u989e"
+  },
+  {
+    "id": "FJ1747",
+    "name": "\u53f3\u4e0b\u989e | right inferior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right inferior temporal gyrus",
+    "nameCn": "\u53f3\u4e0b\u989e"
+  },
+  {
+    "id": "FJ1748",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left insula",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left insula",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1749",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right insula",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right insula",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1750",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left internal capsule",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left internal capsule",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1751",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right internal capsule",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right internal capsule",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1753",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left amygdala",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left amygdala",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1754",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left caudate nucleus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left caudate nucleus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1756",
+    "name": "\u7684\u5de6 | left fornix of forebrain",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left fornix of forebrain",
+    "nameCn": "\u7684\u5de6"
+  },
+  {
+    "id": "FJ1757",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left globus pallidus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left globus pallidus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1758",
+    "name": "\u5de6 | white matter of left cerebral hemisphere",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "white matter of left cerebral hemisphere",
+    "nameCn": "\u5de6"
+  },
+  {
+    "id": "FJ1759",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left hippocampus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left hippocampus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1760",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | organ component of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "organ component of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1761",
+    "name": "\u5de6\u4e0b\u7684 | brachium of left inferior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "brachium of left inferior colliculus",
+    "nameCn": "\u5de6\u4e0b\u7684"
+  },
+  {
+    "id": "FJ1762",
+    "name": "\u5de6\u4e0b | left inferior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left inferior colliculus",
+    "nameCn": "\u5de6\u4e0b"
+  },
+  {
+    "id": "FJ1764",
+    "name": "\u7684 | segment of white matter of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of white matter of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1766",
+    "name": "\u5de6\u5916\u4fa7 | left lateral geniculate body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lateral geniculate body",
+    "nameCn": "\u5de6\u5916\u4fa7"
+  },
+  {
+    "id": "FJ1768",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1769",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | material anatomical entity",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "material anatomical entity",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1770",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | material anatomical entity",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "material anatomical entity",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1771",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | segment of neural tree organ",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of neural tree organ",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1772",
+    "name": "\u5de6\u795e\u7ecf | left optic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left optic nerve",
+    "nameCn": "\u5de6\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1773",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left optic tract",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left optic tract",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1774",
+    "name": "\u7684 | segment of white matter of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of white matter of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1775",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1776",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left putamen",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left putamen",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1777",
+    "name": "\u7684\u5de6 | left stria medullaris of thalamus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left stria medullaris of thalamus",
+    "nameCn": "\u7684\u5de6"
+  },
+  {
+    "id": "FJ1778",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left stria terminalis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left stria terminalis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1779",
+    "name": "\u5de6\u4e0a | left superior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left superior colliculus",
+    "nameCn": "\u5de6\u4e0a"
+  },
+  {
+    "id": "FJ1782",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left thalamus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left thalamus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1783",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left fusiform gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left fusiform gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1784",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right fusiform gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right fusiform gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1785",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left parahippocampal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left parahippocampal gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1786",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right parahippocampal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right parahippocampal gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1787",
+    "name": "\u5de6\u989d | left middle frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left middle frontal gyrus",
+    "nameCn": "\u5de6\u989d"
+  },
+  {
+    "id": "FJ1788",
+    "name": "\u53f3\u989d | right middle frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right middle frontal gyrus",
+    "nameCn": "\u53f3\u989d"
+  },
+  {
+    "id": "FJ1789",
+    "name": "\u5de6\u989e | left middle temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left middle temporal gyrus",
+    "nameCn": "\u5de6\u989e"
+  },
+  {
+    "id": "FJ1790",
+    "name": "\u53f3\u989e | right middle temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right middle temporal gyrus",
+    "nameCn": "\u53f3\u989e"
+  },
+  {
+    "id": "FJ1791",
+    "name": "\u5de6\u6795 | left occipital lobe",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left occipital lobe",
+    "nameCn": "\u5de6\u6795"
+  },
+  {
+    "id": "FJ1792",
+    "name": "\u53f3\u6795 | right occipital lobe",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right occipital lobe",
+    "nameCn": "\u53f3\u6795"
+  },
+  {
+    "id": "FJ1793",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | segment of cerebral hemisphere",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of cerebral hemisphere",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1794",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | segment of cerebral hemisphere",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of cerebral hemisphere",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1797",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left postcentral gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left postcentral gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1798",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right postcentral gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right postcentral gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1800",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left precentral gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left precentral gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1801",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right precentral gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right precentral gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1802",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right caudate nucleus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right caudate nucleus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1804",
+    "name": "\u7684\u53f3 | right fornix of forebrain",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right fornix of forebrain",
+    "nameCn": "\u7684\u53f3"
+  },
+  {
+    "id": "FJ1805",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right globus pallidus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right globus pallidus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1806",
+    "name": "\u53f3 | white matter of right cerebral hemisphere",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "white matter of right cerebral hemisphere",
+    "nameCn": "\u53f3"
+  },
+  {
+    "id": "FJ1807",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right hippocampus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right hippocampus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1808",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | organ component of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "organ component of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1809",
+    "name": "\u53f3\u4e0b\u7684 | brachium of right inferior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "brachium of right inferior colliculus",
+    "nameCn": "\u53f3\u4e0b\u7684"
+  },
+  {
+    "id": "FJ1810",
+    "name": "\u53f3\u4e0b | right inferior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right inferior colliculus",
+    "nameCn": "\u53f3\u4e0b"
+  },
+  {
+    "id": "FJ1812",
+    "name": "\u7684 | segment of white matter of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of white matter of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1813",
+    "name": "\u53f3\u5916\u4fa7 | right lateral geniculate body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lateral geniculate body",
+    "nameCn": "\u53f3\u5916\u4fa7"
+  },
+  {
+    "id": "FJ1815",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1816",
+    "name": "\u53f3\u5185\u4fa7 | right medial geniculate body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right medial geniculate body",
+    "nameCn": "\u53f3\u5185\u4fa7"
+  },
+  {
+    "id": "FJ1816M",
+    "name": "\u5de6\u5185\u4fa7 | left medial geniculate body",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left medial geniculate body",
+    "nameCn": "\u5de6\u5185\u4fa7"
+  },
+  {
+    "id": "FJ1817",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | material anatomical entity",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "material anatomical entity",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1818",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | segment of neural tree organ",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of neural tree organ",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1819",
+    "name": "\u53f3\u795e\u7ecf | right optic nerve",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right optic nerve",
+    "nameCn": "\u53f3\u795e\u7ecf"
+  },
+  {
+    "id": "FJ1820",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right optic tract",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right optic tract",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1821",
+    "name": "\u7684 | segment of white matter of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of white matter of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1822",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | cell part cluster of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "cell part cluster of neuraxis",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1823",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right putamen",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right putamen",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1824",
+    "name": "\u7684\u53f3 | right stria medullaris of thalamus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right stria medullaris of thalamus",
+    "nameCn": "\u7684\u53f3"
+  },
+  {
+    "id": "FJ1825",
+    "name": "\u7684 | segment of white matter of neuraxis",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "segment of white matter of neuraxis",
+    "nameCn": "\u7684"
+  },
+  {
+    "id": "FJ1826",
+    "name": "\u53f3\u4e0a | right superior colliculus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right superior colliculus",
+    "nameCn": "\u53f3\u4e0a"
+  },
+  {
+    "id": "FJ1827",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right thalamus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right thalamus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1829",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right amygdala",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right amygdala",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1831",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | material anatomical entity",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "material anatomical entity",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1833",
+    "name": "\u5de6\u4e0a\u989d | left superior frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left superior frontal gyrus",
+    "nameCn": "\u5de6\u4e0a\u989d"
+  },
+  {
+    "id": "FJ1834",
+    "name": "\u53f3\u4e0a\u989d | right superior frontal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right superior frontal gyrus",
+    "nameCn": "\u53f3\u4e0a\u989d"
+  },
+  {
+    "id": "FJ1835",
+    "name": "\u5de6\u4e0a\u9876 | left superior parietal lobule",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left superior parietal lobule",
+    "nameCn": "\u5de6\u4e0a\u9876"
+  },
+  {
+    "id": "FJ1836",
+    "name": "\u53f3\u4e0a\u9876 | right superior parietal lobule",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right superior parietal lobule",
+    "nameCn": "\u53f3\u4e0a\u9876"
+  },
+  {
+    "id": "FJ1837",
+    "name": "\u5de6\u4e0a\u989e\u7684\u524d | anterior part of left superior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "anterior part of left superior temporal gyrus",
+    "nameCn": "\u5de6\u4e0a\u989e\u7684\u524d"
+  },
+  {
+    "id": "FJ1838",
+    "name": "\u53f3\u4e0a\u989e\u7684\u524d | anterior part of right superior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "anterior part of right superior temporal gyrus",
+    "nameCn": "\u53f3\u4e0a\u989e\u7684\u524d"
+  },
+  {
+    "id": "FJ1839",
+    "name": "\u5de6\u4e0a\u989e\u7684\u540e | posterior part of left superior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "posterior part of left superior temporal gyrus",
+    "nameCn": "\u5de6\u4e0a\u989e\u7684\u540e"
+  },
+  {
+    "id": "FJ1840",
+    "name": "\u53f3\u4e0a\u989e\u7684\u540e | posterior part of right superior temporal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "posterior part of right superior temporal gyrus",
+    "nameCn": "\u53f3\u4e0a\u989e\u7684\u540e"
+  },
+  {
+    "id": "FJ1841",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left supramarginal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left supramarginal gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ1842",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right supramarginal gyrus",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right supramarginal gyrus",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ2561",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | material anatomical entity",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "material anatomical entity",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3129",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left adrenal gland",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left adrenal gland",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3130",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right adrenal gland",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right adrenal gland",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3145",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left kidney",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left kidney",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3147",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right kidney",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right kidney",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3265",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | left lacrimal bone",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "left lacrimal bone",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  },
+  {
+    "id": "FJ3371",
+    "name": "\u672a\u8bc6\u522b\u7ed3\u6784 | right lacrimal bone",
+    "system": "\u795e\u7ecf\u7cfb\u7edf",
+    "nameEn": "right lacrimal bone",
+    "nameCn": "\u672a\u8bc6\u522b\u7ed3\u6784"
+  }
+]

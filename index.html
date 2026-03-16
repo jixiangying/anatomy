@@ -3,199 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人体解剖学3D图谱 - ISA分类</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>人体解剖学 3D 图谱 - BodyParts3D</title>
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="js/OrbitControls.js"></script>
-    <script src="js/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e4e4e7; overflow: hidden; }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .ui-layer { position: fixed; z-index: 10; pointer-events: none; }
+        :root { --bg-dark: #0a0a0f; --panel-bg: rgba(20, 20, 25, 0.85); --accent: #3b82f6; --text-main: #e4e4e7; --text-dim: #71717a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); overflow: hidden; height: 100vh; width: 100vw; }
+        
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        .ui-layer { position: absolute; z-index: 10; pointer-events: none; }
         .ui-layer > * { pointer-events: auto; }
         
-        /* 左侧边栏 - 拉满屏幕 */
-        .sidebar { 
-            left: 0; 
-            top: 0; 
-            width: 340px; 
-            height: 100vh;
-            background: rgba(15, 15, 20, 0.95); 
-            backdrop-filter: blur(12px); 
-            border-right: 1px solid rgba(255,255,255,0.08); 
-            padding: 20px; 
-            display: flex;
-            flex-direction: column;
-        }
+        .sidebar { left: 20px; top: 20px; bottom: 20px; width: 320px; display: flex; flex-direction: column; gap: 15px; }
+        .right-panel { right: 20px; top: 20px; bottom: 20px; width: 280px; display: flex; flex-direction: column; gap: 15px; }
         
-        .sidebar-header {
-            flex-shrink: 0;
-            margin-bottom: 16px;
-        }
+        .panel-box { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
         
-        .sidebar-content {
-            flex: 1;
-            overflow-y: auto;
-            min-height: 0;
-        }
+        .sidebar-header { flex-shrink: 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px; padding-bottom: 10px; }
+        .sidebar-content { flex: 1; overflow-y: auto; min-height: 0; }
         
-        .right-panel { 
-            right: 20px; 
-            top: 20px; 
-            width: 280px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 16px; 
-        }
-        
-        .panel-box { 
-            background: rgba(20, 20, 25, 0.9); 
-            backdrop-filter: blur(12px); 
-            border-radius: 16px; 
-            border: 1px solid rgba(255,255,255,0.08); 
-            padding: 16px; 
-        }
-        
-        .system-tabs { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 6px; 
-            margin-bottom: 12px; 
-        }
-        .system-tab { 
-            padding: 4px 10px; 
-            border-radius: 6px; 
-            font-size: 12px; 
-            cursor: pointer; 
-            background: rgba(255,255,255,0.05); 
-            transition: all 0.2s; 
-            white-space: nowrap; 
-        }
+        .system-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 12px; }
+        .system-tab { padding: 8px; font-size: 12px; text-align: center; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .system-tab:hover { background: rgba(255,255,255,0.1); }
-        .system-tab.active { 
-            background: rgba(59, 130, 246, 0.3); 
-            color: #60a5fa; 
-        }
+        .system-tab.active { background: rgba(59, 130, 246, 0.2); border-color: var(--accent); color: #fff; font-weight: 600; }
         
-        .search-box { 
-            width: 100%; 
-            padding: 10px 14px; 
-            border-radius: 10px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(255,255,255,0.05); 
-            color: #e4e4e7; 
-            font-size: 13px; 
-            margin-bottom: 12px; 
-        }
-        .search-box::placeholder { color: #71717a; }
-        .search-box:focus { outline: none; border-color: #3b82f6; }
+        .search-box { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 12px; color: #fff; font-size: 13px; margin-bottom: 10px; outline: none; transition: 0.2s; }
+        .search-box:focus { border-color: var(--accent); background: rgba(0,0,0,0.5); }
         
-        .model-list { 
-            overflow-y: auto;
-        }
-        .model-item { 
-            padding: 10px 12px; 
-            margin-bottom: 4px; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 13px; 
-            background: rgba(255,255,255,0.02); 
-            transition: all 0.15s; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-        }
-        .model-item:hover { background: rgba(255,255,255,0.06); }
-        .model-item.active { background: rgba(59, 130, 246, 0.2); }
-        .model-item.loaded::before { 
-            content: ''; 
-            width: 6px; 
-            height: 6px; 
-            border-radius: 50%; 
-            background: #22c55e; 
-            flex-shrink: 0;
-        }
+        .model-list { display: flex; flex-direction: column; gap: 2px; }
+        .model-item { padding: 10px 12px; font-size: 13px; border-radius: 6px; cursor: pointer; transition: 0.15s; display: flex; align-items: center; border-left: 2px solid transparent; margin-bottom: 2px; }
+        .model-item:hover { background: rgba(255,255,255,0.05); }
+        .model-item.active { background: rgba(59, 130, 246, 0.15); border-left-color: var(--accent); color: #fff; }
         
-        .layer-item { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 10px 12px; 
-            margin-bottom: 8px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            background: rgba(255,255,255,0.03); 
-            transition: all 0.2s; 
-        }
-        .layer-item:hover { background: rgba(255,255,255,0.06); }
-        .layer-item.active { background: rgba(255,255,255,0.1); }
-        .layer-color { 
-            width: 12px; 
-            height: 12px; 
-            border-radius: 50%; 
-            margin-right: 10px; 
-            flex-shrink: 0;
-        }
-        .layer-checkbox { 
-            width: 20px; 
-            height: 20px; 
-            border-radius: 6px; 
-            border: 2px solid rgba(255,255,255,0.2); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 12px; 
-            flex-shrink: 0;
-        }
-        .layer-item.active .layer-checkbox { background: #3b82f6; border-color: #3b82f6; }
+        .layer-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; cursor: pointer; }
+        .layer-color { width: 12px; height: 12px; border-radius: 3px; margin-right: 10px; }
+        .layer-checkbox { width: 18px; height: 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--accent); }
+        .layer-item.active .layer-checkbox { background: var(--accent); color: #fff; border-color: var(--accent); }
         
-        .loading-overlay { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: #0a0a0f; 
-            z-index: 1000; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            transition: opacity 0.5s; 
-        }
-        .loading-spinner { 
-            width: 48px; 
-            height: 48px; 
-            border: 3px solid rgba(255,255,255,0.1); 
-            border-top-color: #3b82f6; 
-            border-radius: 50%; 
-            animation: spin 1s linear infinite; 
-        }
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-dark); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; }
+        .loading-spinner { width: 40px; height: 40px; border: 3px solid rgba(59, 130, 246, 0.1); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        .info-row { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 8px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-            font-size: 13px; 
-        }
-        .info-row:last-child { border-bottom: none; }
-        .info-label { color: #71717a; }
-        
-        .tooltip { 
-            position: fixed; 
-            background: rgba(0,0,0,0.9); 
-            color: #fff; 
-            padding: 6px 12px; 
-            border-radius: 6px; 
-            font-size: 12px; 
-            pointer-events: none; 
-            z-index: 100; 
-            display: none; 
-        }
+        .tooltip { position: fixed; background: rgba(0,0,0,0.9); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; pointer-events: none; z-index: 100; display: none; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -213,73 +66,52 @@
     <div id="canvas-container"></div>
     <div id="tooltip" class="tooltip"></div>
 
-    <!-- 左侧边栏 - 全屏高度 -->
     <div class="ui-layer sidebar">
         <div class="sidebar-header">
             <h1 style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">🫀 人体解剖学图谱</h1>
             <p style="font-size: 11px; color: #71717a; margin-bottom: 12px;">BodyParts3D ISA分类 · 2234个模型</p>
-            
             <div class="system-tabs" id="system-tabs"></div>
             <input type="text" class="search-box" id="search-box" placeholder="搜索模型...">
         </div>
-        
-        <div class="sidebar-content">
-            <div class="model-list" id="model-list"></div>
-        </div>
+        <div class="sidebar-content"><div class="model-list" id="model-list"></div></div>
     </div>
 
-    <!-- 右侧面板 -->
     <div class="ui-layer right-panel">
         <div class="panel-box">
             <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">🔍 图层控制</div>
             <div id="layer-controls"></div>
         </div>
-        <div class="panel-box" id="info-panel">
-            <div style="font-size: 14px; font-weight: 600; margin-bottom: 12px;">📋 模型信息</div>
-            <div id="info-content" style="font-size: 13px; color: #71717a;">
-                <p>点击3D模型或左侧列表查看详情</p>
-                <p style="margin-top: 8px; font-size: 11px;">鼠标左键：旋转<br>鼠标右键：平移<br>滚轮：缩放</p>
-            </div>
-        </div>
     </div>
 
     <script>
-        // 系统配置
         const SystemConfig = {
-            skeletal: { name: '骨骼系统', nameEn: 'Skeletal', color: 0xE8DCC8, count: 306 },
-            muscular: { name: '肌肉系统', nameEn: 'Muscular', color: 0xC44D4D, count: 340 },
-            cardiovascular: { name: '心血管系统', nameEn: 'Cardiovascular', color: 0xDC143C, count: 1016 },
-            nervous: { name: '神经系统', nameEn: 'Nervous', color: 0xFFD700, count: 105 },
-            digestive: { name: '消化系统', nameEn: 'Digestive', color: 0xD2691E, count: 109 },
-            respiratory: { name: '呼吸系统', nameEn: 'Respiratory', color: 0x87CEEB, count: 101 },
-            urinary: { name: '泌尿系统', nameEn: 'Urinary', color: 0xDAA520, count: 6 },
-            reproductive: { name: '生殖系统', nameEn: 'Reproductive', color: 0xFF69B4, count: 6 },
-            endocrine: { name: '内分泌系统', nameEn: 'Endocrine', color: 0x9370DB, count: 11 },
-            lymphatic: { name: '淋巴系统', nameEn: 'Lymphatic', color: 0x90EE90, count: 1 },
-            integumentary: { name: '皮肤系统', nameEn: 'Integumentary', color: 0xF4A460, count: 3 },
-            other: { name: '其他', nameEn: 'Other', color: 0x808080, count: 230 }
+            skeletal: { name: '骨骼系统', color: 0xE8DCC8 },
+            muscular: { name: '肌肉系统', color: 0xC44D4D },
+            cardiovascular: { name: '心血管系统', color: 0xDC143C },
+            nervous: { name: '神经系统', color: 0xFFD700 },
+            digestive: { name: '消化系统', color: 0xD2691E },
+            respiratory: { name: '呼吸系统', color: 0x87CEEB },
+            urinary: { name: '泌尿系统', color: 0xDAA520 },
+            reproductive: { name: '生殖系统', color: 0xFF69B4 },
+            endocrine: { name: '内分泌系统', color: 0x9370DB },
+            lymphatic: { name: '淋巴系统', color: 0x90EE90 },
+            integumentary: { name: '皮肤系统', color: 0xF4A460 },
+            other: { name: '其他', color: 0x808080 }
         };
-
-        const SystemOrder = ['skeletal','muscular','cardiovascular','nervous','digestive','respiratory','urinary','reproductive','endocrine','lymphatic','integumentary','other'];
-
+        const SystemOrder = Object.keys(SystemConfig);
         let AnatomyData = {}, currentSystem = 'skeletal';
-        let scene, camera, renderer, controls, layerSystem;
-        let raycaster, mouse, tooltip;
+        let scene, camera, renderer, controls, layerSystem, raycaster, mouse, tooltip;
 
-        // 图层控制系统
         class LayerControlSystem {
             constructor(scene, camera, renderer, controls) {
                 this.scene = scene; this.camera = camera; this.renderer = renderer; this.controls = controls;
-                this.systems = SystemOrder;
-                this.loadedModels = {}; this.systems.forEach(s => this.loadedModels[s] = new Map());
-                this.layerVisibility = {}; this.systems.forEach(s => this.layerVisibility[s] = s === 'skeletal');
+                this.loadedModels = {}; SystemOrder.forEach(s => this.loadedModels[s] = new Map());
+                this.layerVisibility = {}; SystemOrder.forEach(s => this.layerVisibility[s] = s === 'skeletal');
                 this.materials = this._createMaterials();
-                this.highlightedModel = null;
-                this.originalMaterials = new Map();
+                this.highlightedModel = null; this.originalMaterials = new Map();
             }
-            
             _createMaterials() {
-                const materials = {}, cfg = {
+                const mats = {}, cfg = {
                     skeletal: {c:0xE8DCC8,r:0.7,m:0.1}, muscular: {c:0xC44D4D,r:0.6,m:0.05},
                     cardiovascular: {c:0xDC143C,r:0.4,m:0.2}, nervous: {c:0xFFD700,r:0.5,m:0},
                     digestive: {c:0xD2691E,r:0.5,m:0}, respiratory: {c:0x87CEEB,r:0.5,m:0},
@@ -287,12 +119,9 @@
                     endocrine: {c:0x9370DB,r:0.5,m:0}, lymphatic: {c:0x90EE90,r:0.5,m:0},
                     integumentary: {c:0xF4A460,r:0.6,m:0}, other: {c:0x808080,r:0.5,m:0}
                 };
-                for (const [s,c] of Object.entries(cfg)) {
-                    materials[s] = new THREE.MeshStandardMaterial({color:c.c,roughness:c.r,metalness:c.m});
-                }
-                return materials;
+                for (const [s,c] of Object.entries(cfg)) mats[s] = new THREE.MeshStandardMaterial({color:c.c,roughness:c.r,metalness:c.m});
+                return mats;
             }
-            
             async loadSystem(system) {
                 if (!AnatomyData[system]) return;
                 const models = AnatomyData[system];
@@ -302,98 +131,73 @@
                     document.getElementById('loading-text').textContent = `加载 ${SystemConfig[system].name}: ${Math.min(i+5,models.length)}/${models.length}`;
                 }
             }
-            
             _loadModel(system, model) {
                 if (this.loadedModels[system].has(model.id)) return Promise.resolve();
                 return new Promise(r => {
                     new THREE.OBJLoader().load(`isa_BP3D_4.0_obj_99/${model.id}.obj`, obj => {
                         const material = this.materials[system].clone();
-                        obj.traverse(c => { 
-                            if (c.isMesh) { c.material = material; c.userData = {system, id: model.id, name: model.name}; } 
-                        });
+                        obj.traverse(c => { if (c.isMesh) { c.material = material; c.userData = {system, id: model.id, name: model.name}; } });
                         obj.scale.set(0.1,0.1,0.1); obj.rotation.x = -Math.PI/2; 
                         obj.visible = this.layerVisibility[system];
                         this.scene.add(obj); this.loadedModels[system].set(model.id, obj); r(obj);
                     }, null, () => r(null));
                 });
             }
-            
-            toggleLayer(system, visible) {
-                this.layerVisibility[system] = visible;
-                this.loadedModels[system].forEach(m => m.visible = visible);
-                if (visible) this.loadSystem(system);
-            }
-            
+            toggleLayer(system, visible) { this.layerVisibility[system] = visible; this.loadedModels[system].forEach(m => m.visible = visible); if (visible) this.loadSystem(system); }
             highlightModel(id, system) {
-                if (this.highlightedModel) {
-                    this.highlightedModel.traverse(c => {
-                        if (c.isMesh && this.originalMaterials.has(c)) c.material = this.originalMaterials.get(c);
-                    });
-                    this.highlightedModel = null; this.originalMaterials.clear();
-                }
-                const model = this.loadedModels[system]?.get(id);
-                if (!model) return;
+                if (this.highlightedModel) { this.highlightedModel.traverse(c => { if (c.isMesh && this.originalMaterials.has(c)) c.material = this.originalMaterials.get(c); }); this.highlightedModel = null; this.originalMaterials.clear(); }
+                const model = this.loadedModels[system]?.get(id); if (!model) return;
                 this.highlightedModel = model;
                 const highlightMat = new THREE.MeshStandardMaterial({color: 0x3b82f6, emissive: 0x1d4ed8, emissiveIntensity: 0.3, roughness: 0.4, metalness: 0.3});
                 model.traverse(c => { if (c.isMesh) { this.originalMaterials.set(c, c.material); c.material = highlightMat; } });
             }
-            
             focusOnModel(id, system) {
                 const model = this.loadedModels[system]?.get(id);
                 if (!model) { this.toggleLayer(system, true); setTimeout(() => this.focusOnModel(id, system), 500); return; }
-                const box = new THREE.Box3().setFromObject(model);
-                const center = box.getCenter(new THREE.Vector3());
-                const dist = Math.max(...box.getSize(new THREE.Vector3()).toArray()) * 5;
-                const endPos = new THREE.Vector3(center.x+dist, center.y+dist*0.5, center.z+dist);
-                const startPos = this.camera.position.clone();
-                let t = 0;
-                const animate = () => { if (t >= 1) return; t += 0.05; this.camera.position.lerpVectors(startPos, endPos, t*(2-t)); this.controls.target.lerp(center, 0.1); this.controls.update(); requestAnimationFrame(animate); };
-                animate();
-                this.highlightModel(id, system);
+                const box = new THREE.Box3().setFromObject(model), center = box.getCenter(new THREE.Vector3()), dist = Math.max(...box.getSize(new THREE.Vector3()).toArray()) * 5;
+                const endPos = new THREE.Vector3(center.x+dist, center.y+dist*0.5, center.z+dist), startPos = this.camera.position.clone();
+                let t = 0; const animate = () => { if (t >= 1) return; t += 0.05; this.camera.position.lerpVectors(startPos, endPos, t*(2-t)); this.controls.target.lerp(center, 0.1); this.controls.update(); requestAnimationFrame(animate); };
+                animate(); this.highlightModel(id, system);
             }
-            
             raycast(mouse) {
-                raycaster.setFromCamera(mouse, this.camera);
-                const visibleObjects = [];
-                this.systems.forEach(s => { if (this.layerVisibility[s]) this.loadedModels[s].forEach(obj => { if (obj.visible) visibleObjects.push(obj); }); });
-                if (visibleObjects.length === 0) return null;
+                raycaster.setFromCamera(mouse, this.camera); const visibleObjects = [];
+                SystemOrder.forEach(s => { if (this.layerVisibility[s]) this.loadedModels[s].forEach(obj => { if (obj.visible) visibleObjects.push(obj); }); });
                 const intersects = raycaster.intersectObjects(visibleObjects, true);
-                if (intersects.length > 0) { let target = intersects[0].object; while (target.parent && !target.userData.id) target = target.parent; return target.userData; }
+                if (intersects.length > 0) { let t = intersects[0].object; while (t.parent && !t.userData.id) t = t.parent; return t.userData; }
                 return null;
             }
         }
 
         async function init() {
-            try { AnatomyData = await (await fetch('data/anatomy_data_simple.json')).json(); } catch(e) { console.error(e); return; }
-            initUI(); init3D(); setupInteraction();
-            layerSystem.loadSystem('skeletal');
-            updateModelList();
+            try { 
+                const res = await fetch('data/anatomy_data_simple_refined.json'); AnatomyData = await res.json(); 
+                SystemOrder.forEach(s => SystemConfig[s].count = AnatomyData[s]?.length || 0);
+            } catch(e) { console.error(e); return; }
+            initUI(); init3D(); setupInteraction(); layerSystem.loadSystem('skeletal'); updateModelList();
             setTimeout(() => { document.getElementById('loading').style.opacity = '0'; setTimeout(() => document.getElementById('loading').style.display = 'none', 500); }, 2000);
         }
 
         function initUI() {
             const tabs = document.getElementById('system-tabs');
             SystemOrder.forEach(s => { const t = document.createElement('div'); t.className = 'system-tab' + (s==='skeletal'?' active':''); t.textContent = SystemConfig[s].name; t.onclick = () => switchSystem(s); tabs.appendChild(t); });
-
             const layers = document.getElementById('layer-controls');
-            SystemOrder.forEach(s => { const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); const d = document.createElement('div'); d.className = 'layer-item' + (s==='skeletal'?' active':''); d.dataset.system = s; d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name}</div><div style="font-size:10px;color:#71717a">${cfg.count}个</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; d.onclick = () => toggleLayer(s); layers.appendChild(d); });
-
-            document.getElementById('search-box').addEventListener('input', e => { document.querySelectorAll('.model-item').forEach(it => { it.style.display = it.textContent.toLowerCase().includes(e.target.value.toLowerCase()) ? 'flex' : 'none'; }); });
+            SystemOrder.forEach(s => { 
+                const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); const d = document.createElement('div'); 
+                d.className = 'layer-item' + (s==='skeletal'?' active':''); d.dataset.system = s; 
+                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name}</div><div style="font-size:10px;color:#71717a">${cfg.count}个</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; 
+                d.onclick = () => toggleLayer(s); layers.appendChild(d); 
+            });
+            document.getElementById('search-box').addEventListener('input', e => { const v = e.target.value.toLowerCase(); document.querySelectorAll('.model-item').forEach(it => it.style.display = it.textContent.toLowerCase().includes(v) ? 'flex' : 'none'); });
             tooltip = document.getElementById('tooltip');
         }
 
         function init3D() {
-            const c = document.getElementById('canvas-container');
-            scene = new THREE.Scene(); scene.background = new THREE.Color(0x0a0a0f);
-            camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
-            camera.position.set(0,100,250);
-            renderer = new THREE.WebGLRenderer({antialias:true}); renderer.setSize(window.innerWidth, window.innerHeight);
-            c.appendChild(renderer.domElement);
-            scene.add(new THREE.AmbientLight(0xffffff,0.4));
-            const ml = new THREE.DirectionalLight(0xffffff,0.8); ml.position.set(50,100,50); scene.add(ml);
+            const c = document.getElementById('canvas-container'); scene = new THREE.Scene(); scene.background = new THREE.Color(0x0a0a0f);
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000); camera.position.set(0,100,250);
+            renderer = new THREE.WebGLRenderer({antialias:true}); renderer.setSize(window.innerWidth, window.innerHeight); c.appendChild(renderer.domElement);
+            scene.add(new THREE.AmbientLight(0xffffff,0.4)); const ml = new THREE.DirectionalLight(0xffffff,0.8); ml.position.set(50,100,50); scene.add(ml);
             const fl = new THREE.DirectionalLight(0x8b9dc3,0.3); fl.position.set(-50,0,-50); scene.add(fl);
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true; controls.target.set(0,70,0);
+            controls = new THREE.OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.target.set(0,70,0);
             raycaster = new THREE.Raycaster(); mouse = new THREE.Vector2(); layerSystem = new LayerControlSystem(scene, camera, renderer, controls);
             (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene,camera); })();
             window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); });
@@ -401,52 +205,39 @@
 
         function setupInteraction() {
             const canvas = document.getElementById('canvas-container');
-            canvas.addEventListener('mousemove', e => { mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; const result = layerSystem.raycast(mouse); if (result) { tooltip.style.display = 'block'; tooltip.style.left = e.clientX + 15 + 'px'; tooltip.style.top = e.clientY + 15 + 'px'; 
-            // 解析双语名称显示
-            let tooltipText = result.name;
-            if (result.name.includes(' | ')) {
-                const [cn, en] = result.name.split(' | ');
-                tooltipText = `${cn}\n${en}`;
-                tooltip.style.whiteSpace = 'pre-line';
-            }
-            tooltip.textContent = tooltipText; 
-            canvas.style.cursor = 'pointer'; } else { tooltip.style.display = 'none'; canvas.style.cursor = 'default'; } });
-            canvas.addEventListener('click', e => { mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; const result = layerSystem.raycast(mouse); if (result) selectModelByData(result); });
+            canvas.addEventListener('mousemove', e => { 
+                mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; 
+                const res = layerSystem.raycast(mouse); 
+                if (res) { 
+                    tooltip.style.display = 'block'; tooltip.style.left = e.clientX + 15 + 'px'; tooltip.style.top = e.clientY + 15 + 'px'; 
+                    const [cn, en] = res.name.includes(' | ') ? res.name.split(' | ') : [res.name, ''];
+                    tooltip.innerHTML = `<div style="color:#fbbf24;font-family:monospace;font-weight:bold;font-size:11px;">${res.id}</div><div style="font-weight:bold;">${cn}</div><div style="font-size:11px;color:#aaa;">${en}</div>`;
+                    canvas.style.cursor = 'pointer'; 
+                } else { tooltip.style.display = 'none'; canvas.style.cursor = 'default'; } 
+            });
+            canvas.addEventListener('click', e => { 
+                mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; 
+                const res = layerSystem.raycast(mouse); if (res) selectModelByData(res); 
+            });
         }
 
         function switchSystem(s) { currentSystem = s; document.querySelectorAll('.system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); updateModelList(); }
-        function updateModelList() { const l = document.getElementById('model-list'); l.innerHTML = ''; (AnatomyData[currentSystem]||[]).forEach(m => { 
-            const d = document.createElement('div'); 
-            d.className = 'model-item'; 
-            d.dataset.id = m.id; 
-            // 解析双语名称
-            let cnName = m.name, enName = '';
-            if (m.name.includes(' | ')) {
-                [cnName, enName] = m.name.split(' | ');
-            }
-            const displayHtml = enName 
-                ? `<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><span style="color:#e4e4e7;">${cnName}</span><span style="color:#71717a;font-size:11px;margin-left:6px;">${enName}</span></span>`
-                : `<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e4e4e7;">${m.name}</span>`;
-            d.innerHTML = displayHtml; 
-            d.onclick = () => selectModel(m); 
-            l.appendChild(d); 
-        }); }
-        function toggleLayer(s) { const it = document.querySelector(`.layer-item[data-system="${s}"]`), a = it.classList.toggle('active'); it.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; layerSystem.toggleLayer(s, a); }
-        function selectModel(m) { document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === m.id)); updateInfoPanel(m.id, m.name, m.system, currentSystem); layerSystem.focusOnModel(m.id, currentSystem); }
-        function selectModelByData(data) { document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === data.id)); updateInfoPanel(data.id, data.name, SystemConfig[data.system].name, data.system); layerSystem.highlightModel(data.id, data.system); }
-        function updateInfoPanel(id, name, systemName, systemCode) { 
-            const cfg = SystemConfig[systemCode], c = '#' + cfg.color.toString(16).padStart(6,'0'); 
-            // 解析双语名称
-            let cnName = name, enName = '';
-            if (name.includes(' | ')) {
-                [cnName, enName] = name.split(' | ');
-            }
-            const nameHtml = enName 
-                ? `<div style="font-size:15px;font-weight:500;color:#e4e4e7;margin-bottom:4px;">${cnName}</div><div style="font-size:12px;color:#a1a1aa;font-style:italic;">${enName}</div>`
-                : `<div style="font-size:15px;font-weight:500;color:#e4e4e7;">${name}</div>`;
-            document.getElementById('info-content').innerHTML = `<div class="info-row"><span class="info-label">模型ID</span><span class="info-value">${id}</span></div><div class="info-row"><span class="info-label">名称</span><span class="info-value" style="flex-direction:column;align-items:flex-start;">${nameHtml}</span></div><div class="info-row"><span class="info-label">系统</span><span class="info-value" style="color:${c}">${systemName}</span></div><div class="info-row"><span class="info-label">文件</span><span class="info-value" style="font-family:monospace;font-size:11px">${id}.obj</span></div>`; 
+        function updateModelList() { 
+            const l = document.getElementById('model-list'); l.innerHTML = ''; 
+            (AnatomyData[currentSystem]||[]).forEach(m => { 
+                const d = document.createElement('div'); d.className = 'model-item'; d.dataset.id = m.id; 
+                const [cn, en] = m.name.includes(' | ') ? m.name.split(' | ') : [m.name, ''];
+                d.innerHTML = `<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><span style="color:#e4e4e7;">${cn}</span><span style="color:#71717a;font-size:11px;margin-left:6px;">${en}</span></span>`;
+                d.onclick = () => selectModel(m); l.appendChild(d); 
+            }); 
         }
-
+        function toggleLayer(s) { const it = document.querySelector(`.layer-item[data-system="${s}"]`), a = it.classList.toggle('active'); it.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; layerSystem.toggleLayer(s, a); }
+        function selectModel(m) { document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === m.id)); layerSystem.focusOnModel(m.id, currentSystem); }
+        function selectModelByData(data) { 
+            if (currentSystem !== data.system) switchSystem(data.system);
+            setTimeout(() => { const item = document.querySelector(`.model-item[data-id="${data.id}"]`); if (item) { document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); item.scrollIntoView({behavior:'smooth', block:'center'}); } }, 100);
+            layerSystem.highlightModel(data.id, data.system); 
+        }
         init();
     </script>
 </body>
