@@ -54,6 +54,69 @@
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .sidebar { width: 280px; }
+            .right-panel { width: 240px; }
+        }
+        
+        /* 平板横屏/小桌面 - 保持左右分栏，调整宽度 */
+        @media (max-width: 1024px) {
+            .sidebar { width: 240px; left: 12px; top: 12px; bottom: 12px; }
+            .right-panel { width: 180px; right: 12px; top: 12px; bottom: 12px; }
+            .panel-box { padding: 10px; }
+        }
+        
+        /* 平板竖屏/大手机横屏 - 进一步缩小或调整布局 */
+        @media (max-width: 900px) {
+            .sidebar { width: 220px; left: 10px; top: 10px; bottom: 10px; }
+            .right-panel { width: 160px; right: 10px; top: 10px; bottom: 10px; }
+        }
+        
+        /* 手机/小屏 - 改为上下堆叠布局，右侧面板保持合适宽度 */
+        @media (max-width: 768px) {
+            .sidebar { 
+                width: calc(100% - 20px); 
+                height: 40vh; 
+                top: auto; 
+                bottom: 10px; 
+                left: 10px; 
+                right: 10px;
+            }
+            .right-panel { 
+                width: 200px; 
+                left: auto;
+                right: 10px; 
+                top: 10px; 
+                bottom: auto;
+                height: auto;
+                max-height: 28vh;
+            }
+            .sidebar-header { padding-bottom: 8px; margin-bottom: 8px; }
+            .system-tabs { grid-template-columns: repeat(4, 1fr); }
+            h1 { font-size: 15px !important; }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar { height: 45vh; bottom: 8px; left: 8px; right: 8px; width: calc(100% - 16px); }
+            .right-panel { width: 160px; right: 8px; top: 8px; max-height: 25vh; }
+            .system-tabs { grid-template-columns: repeat(3, 1fr); }
+            .model-item { padding: 8px 10px; font-size: 12px; }
+            .layer-item { padding: 5px 0; }
+        }
+        
+        @media (max-width: 360px) {
+            .system-tabs { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        /* 触摸设备优化 */
+        @media (hover: none) and (pointer: coarse) {
+            .model-item:hover { background: transparent; }
+            .model-item:active { background: rgba(255,255,255,0.1); }
+            .system-tab:hover { background: rgba(255,255,255,0.05); }
+            ::-webkit-scrollbar { width: 4px; }
+        }
     </style>
 </head>
 <body>
