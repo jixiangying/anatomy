@@ -95,8 +95,7 @@
             reproductive: { name: '生殖系统', nameEn: 'Reproductive', color: 0xFF69B4 },
             endocrine: { name: '内分泌系统', nameEn: 'Endocrine', color: 0x9370DB },
             lymphatic: { name: '淋巴系统', nameEn: 'Lymphatic', color: 0x90EE90 },
-            integumentary: { name: '皮肤系统', nameEn: 'Integumentary', color: 0xF4A460 },
-            other: { name: '其他', nameEn: 'Other', color: 0x808080 }
+            integumentary: { name: '皮肤系统', nameEn: 'Integumentary', color: 0xF4A460 }
         };
         const SystemOrder = Object.keys(SystemConfig);
         let AnatomyData = {}, currentSystem = 'skeletal';
@@ -117,7 +116,7 @@
                     digestive: {c:0xD2691E,r:0.5,m:0}, respiratory: {c:0x87CEEB,r:0.5,m:0},
                     urinary: {c:0xDAA520,r:0.5,m:0}, reproductive: {c:0xFF69B4,r:0.5,m:0},
                     endocrine: {c:0x9370DB,r:0.5,m:0}, lymphatic: {c:0x90EE90,r:0.5,m:0},
-                    integumentary: {c:0xF4A460,r:0.6,m:0}, other: {c:0x808080,r:0.5,m:0}
+                    integumentary: {c:0xF4A460,r:0.6,m:0}
                 };
                 for (const [s,c] of Object.entries(cfg)) mats[s] = new THREE.MeshStandardMaterial({color:c.c,roughness:c.r,metalness:c.m});
                 return mats;
@@ -136,28 +135,120 @@
                 return new Promise(r => {
                     new THREE.OBJLoader().load(`isa_BP3D_4.0_obj_99/${model.id}.obj`, obj => {
                         const material = this.materials[system].clone();
-                        obj.traverse(c => { if (c.isMesh) { c.material = material; c.userData = {system, id: model.id, name: model.name}; } });
+                        obj.traverse(c => { 
+                            if (c.isMesh) { 
+                                c.material = material; 
+                                c.userData = {system, id: model.id, name: model.name};
+                                // 保存基础材质用于后续高亮恢复
+                                c.userData.baseMaterial = material;
+                            } 
+                        });
                         obj.scale.set(0.1,0.1,0.1); obj.rotation.x = -Math.PI/2; 
                         obj.visible = this.layerVisibility[system];
                         this.scene.add(obj); this.loadedModels[system].set(model.id, obj); r(obj);
                     }, null, () => r(null));
                 });
             }
-            toggleLayer(system, visible) { this.layerVisibility[system] = visible; this.loadedModels[system].forEach(m => m.visible = visible); if (visible) this.loadSystem(system); }
+            toggleLayer(system, visible) { 
+                this.layerVisibility[system] = visible; 
+                // 强制遍历所有已加载的模型，设置visible
+                this.loadedModels[system].forEach(m => { 
+                    m.visible = visible;
+                    // 确保所有子mesh也设置visible
+                    m.traverse(c => { c.visible = visible; });
+                }); 
+                if (visible) {
+                    return this.loadSystem(system).then(() => {
+                        // 加载完成后，如果有高亮状态，更新材质
+                        if (this.highlightedModel) {
+                            this._updateAllModelMaterials();
+                        }
+                    });
+                }
+                return Promise.resolve();
+            }
             highlightModel(id, system) {
-                if (this.highlightedModel) { this.highlightedModel.traverse(c => { if (c.isMesh && this.originalMaterials.has(c)) c.material = this.originalMaterials.get(c); }); this.highlightedModel = null; this.originalMaterials.clear(); }
-                const model = this.loadedModels[system]?.get(id); if (!model) return;
+                // 先清除之前的高亮状态（恢复所有模型）
+                this.clearHighlight();
+                
+                const model = this.loadedModels[system]?.get(id); 
+                if (!model) return;
+                
                 this.highlightedModel = model;
-                const highlightMat = new THREE.MeshStandardMaterial({color: 0x3b82f6, emissive: 0x1d4ed8, emissiveIntensity: 0.3, roughness: 0.4, metalness: 0.3});
-                model.traverse(c => { if (c.isMesh) { this.originalMaterials.set(c, c.material); c.material = highlightMat; } });
+                this.highlightedModelId = id;
+                this.highlightedSystem = system;
+                
+                // 更新所有模型的材质状态
+                this._updateAllModelMaterials();
+            }
+            _updateAllModelMaterials() {
+                SystemOrder.forEach(s => {
+                    if (!this.layerVisibility[s]) return;
+                    this.loadedModels[s].forEach((obj, modelId) => {
+                        const isHighlighted = (s === this.highlightedSystem && modelId === this.highlightedModelId);
+                        const isOther = this.highlightedModel && !isHighlighted;
+                        
+                        obj.traverse(c => {
+                            if (!c.isMesh) return;
+                            
+                            // 确保 baseMaterial 已保存（只保存一次）
+                            if (!c.userData.baseMaterial) {
+                                c.userData.baseMaterial = c.material;
+                            }
+                            
+                            if (isHighlighted) {
+                                // 高亮模型：蓝色发光
+                                if (!c.userData.highlightMat) {
+                                    c.userData.highlightMat = new THREE.MeshStandardMaterial({
+                                        color: 0x3b82f6, 
+                                        emissive: 0x1d4ed8, 
+                                        emissiveIntensity: 0.3, 
+                                        roughness: 0.4, 
+                                        metalness: 0.3
+                                    });
+                                }
+                                c.material = c.userData.highlightMat;
+                            } else if (isOther) {
+                                // 其他模型：半透明（基于基础材质）
+                                if (!c.userData.dimMat) {
+                                    c.userData.dimMat = c.userData.baseMaterial.clone();
+                                    c.userData.dimMat.transparent = true;
+                                    c.userData.dimMat.opacity = 0.25;
+                                }
+                                c.material = c.userData.dimMat;
+                            } else {
+                                // 无高亮状态：恢复基础材质
+                                c.material = c.userData.baseMaterial;
+                            }
+                        });
+                    });
+                });
+            }
+            clearHighlight() {
+                // 清除高亮状态
+                this.highlightedModel = null;
+                this.highlightedModelId = null;
+                this.highlightedSystem = null;
+                // 恢复所有材质
+                this._updateAllModelMaterials();
             }
             focusOnModel(id, system) {
                 const model = this.loadedModels[system]?.get(id);
-                if (!model) { this.toggleLayer(system, true); setTimeout(() => this.focusOnModel(id, system), 500); return; }
+                if (!model) { 
+                    // 模型未加载，先开启图层加载模型，然后重试
+                    this.toggleLayer(system, true).then(() => {
+                        this.focusOnModel(id, system);
+                    });
+                    return; 
+                }
                 const box = new THREE.Box3().setFromObject(model), center = box.getCenter(new THREE.Vector3()), dist = Math.max(...box.getSize(new THREE.Vector3()).toArray()) * 5;
                 const endPos = new THREE.Vector3(center.x+dist, center.y+dist*0.5, center.z+dist), startPos = this.camera.position.clone();
                 let t = 0; const animate = () => { if (t >= 1) return; t += 0.05; this.camera.position.lerpVectors(startPos, endPos, t*(2-t)); this.controls.target.lerp(center, 0.1); this.controls.update(); requestAnimationFrame(animate); };
-                animate(); this.highlightModel(id, system);
+                animate(); 
+                // 只有图层可见时才高亮
+                if (this.layerVisibility[system]) {
+                    this.highlightModel(id, system);
+                }
             }
             raycast(mouse) {
                 raycaster.setFromCamera(mouse, this.camera); const visibleObjects = [];
@@ -190,9 +281,18 @@
                 const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); const d = document.createElement('div'); 
                 d.className = 'layer-item' + (s==='skeletal'?' active':''); d.dataset.system = s; 
                 d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name} <span style="font-size:11px; font-weight:400; opacity:0.7;">${cfg.nameEn}</span></div><div style="font-size:10px;color:#71717a">${cfg.count} models</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; 
-                d.onclick = () => toggleLayer(s); layers.appendChild(d); 
+                d.onclick = () => globalToggleLayer(s); layers.appendChild(d); 
             });
-            document.getElementById('search-box').addEventListener('input', e => { const v = e.target.value.toLowerCase(); document.querySelectorAll('.model-item').forEach(it => it.style.display = it.textContent.toLowerCase().includes(v) ? 'flex' : 'none'); });
+            document.getElementById('search-box').addEventListener('input', e => {
+                const v = e.target.value.toLowerCase().trim();
+                if (v.length === 0) {
+                    // 清空搜索，恢复当前系统的模型列表
+                    updateModelList();
+                    return;
+                }
+                // 全局搜索所有系统的模型
+                performGlobalSearch(v);
+            });
             tooltip = document.getElementById('tooltip');
         }
 
@@ -222,11 +322,26 @@
             });
             canvas.addEventListener('click', e => { 
                 mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; 
-                const res = layerSystem.raycast(mouse); if (res) selectModelByData(res); 
+                const res = layerSystem.raycast(mouse); 
+                if (res) {
+                    selectModelByData(res);
+                } else {
+                    // 点击空白处，清除高亮
+                    layerSystem.clearHighlight();
+                    document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active'));
+                }
             });
         }
 
-        function switchSystem(s) { currentSystem = s; document.querySelectorAll('.system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); updateModelList(); }
+        function switchSystem(s, preserveHighlight = false) { 
+            // 清除之前的高亮（除非指定保留）
+            if (!preserveHighlight) {
+                layerSystem.clearHighlight();
+            }
+            currentSystem = s; 
+            document.querySelectorAll('.system-tab').forEach(t => t.classList.toggle('active', t.textContent === SystemConfig[s].name)); 
+            updateModelList(); 
+        }
         function updateModelList() { 
             const l = document.getElementById('model-list'); l.innerHTML = ''; 
             (AnatomyData[currentSystem]||[]).forEach(m => { 
@@ -236,12 +351,123 @@
                 d.onclick = () => selectModel(m); l.appendChild(d); 
             }); 
         }
-        function toggleLayer(s) { const it = document.querySelector(`.layer-item[data-system="${s}"]`), a = it.classList.toggle('active'); it.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; layerSystem.toggleLayer(s, a); }
-        function selectModel(m) { document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === m.id)); layerSystem.focusOnModel(m.id, currentSystem); }
+
+        function selectModel(m) { 
+            document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === m.id)); 
+            // 如果图层未开启，先开启并同步UI
+            if (!layerSystem.layerVisibility[currentSystem]) {
+                const layerItem = document.querySelector(`.layer-item[data-system="${currentSystem}"]`);
+                if (layerItem) {
+                    layerItem.classList.add('active');
+                    layerItem.querySelector('.layer-checkbox').textContent = '✓';
+                }
+                layerSystem.toggleLayer(currentSystem, true).then(() => {
+                    layerSystem.focusOnModel(m.id, currentSystem);
+                });
+            } else {
+                layerSystem.focusOnModel(m.id, currentSystem);
+            }
+        }
         function selectModelByData(data) { 
-            if (currentSystem !== data.system) switchSystem(data.system);
-            setTimeout(() => { const item = document.querySelector(`.model-item[data-id="${data.id}"]`); if (item) { document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); item.scrollIntoView({behavior:'smooth', block:'center'}); } }, 100);
-            layerSystem.highlightModel(data.id, data.system); 
+            // 如果图层未开启，先开启并同步UI
+            if (!layerSystem.layerVisibility[data.system]) {
+                const layerItem = document.querySelector(`.layer-item[data-system="${data.system}"]`);
+                if (layerItem) {
+                    layerItem.classList.add('active');
+                    layerItem.querySelector('.layer-checkbox').textContent = '✓';
+                }
+                layerSystem.toggleLayer(data.system, true).then(() => {
+                    if (currentSystem !== data.system) switchSystem(data.system);
+                    setTimeout(() => { const item = document.querySelector(`.model-item[data-id="${data.id}"]`); if (item) { document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); item.scrollIntoView({behavior:'smooth', block:'center'}); } }, 100);
+                    layerSystem.highlightModel(data.id, data.system);
+                });
+            } else {
+                if (currentSystem !== data.system) switchSystem(data.system);
+                setTimeout(() => { const item = document.querySelector(`.model-item[data-id="${data.id}"]`); if (item) { document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active')); item.classList.add('active'); item.scrollIntoView({behavior:'smooth', block:'center'}); } }, 100);
+                layerSystem.highlightModel(data.id, data.system);
+            }
+        }
+        
+        // 全局搜索功能
+        function performGlobalSearch(query) {
+            const l = document.getElementById('model-list');
+            l.innerHTML = '';
+            
+            let resultCount = 0;
+            SystemOrder.forEach(system => {
+                const models = AnatomyData[system] || [];
+                models.forEach(m => {
+                    if (m.name.toLowerCase().includes(query) || m.id.toLowerCase().includes(query)) {
+                        resultCount++;
+                        const d = document.createElement('div');
+                        d.className = 'model-item';
+                        d.dataset.id = m.id;
+                        d.dataset.system = system;
+                        const [cn, en] = m.name.includes(' | ') ? m.name.split(' | ') : [m.name, ''];
+                        const systemCfg = SystemConfig[system];
+                        d.innerHTML = `
+                            <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                                <span style="color:#e4e4e7;">${cn}</span>
+                                <span style="color:#71717a;font-size:11px;margin-left:6px;">${en}</span>
+                            </span>
+                            <span style="font-size:10px;color:${'#' + systemCfg.color.toString(16).padStart(6,'0')};margin-left:8px;flex-shrink:0;">${systemCfg.name}</span>
+                        `;
+                        d.onclick = () => selectGlobalModel(m, system);
+                        l.appendChild(d);
+                    }
+                });
+            });
+            
+            // 如果没有结果，显示提示
+            if (resultCount === 0) {
+                l.innerHTML = '<div style="padding:20px;text-align:center;color:#71717a;font-size:13px;">未找到匹配的模型</div>';
+            }
+        }
+        
+        // 选择全局搜索结果中的模型
+        function selectGlobalModel(m, system) {
+            // 1. 如果图层未开启，先开启它
+            if (!layerSystem.layerVisibility[system]) {
+                // 更新图层控制UI
+                const layerItem = document.querySelector(`.layer-item[data-system="${system}"]`);
+                if (layerItem) {
+                    layerItem.classList.add('active');
+                    layerItem.querySelector('.layer-checkbox').textContent = '✓';
+                }
+                // 开启图层，等待加载完成后再继续
+                layerSystem.toggleLayer(system, true).then(() => {
+                    continueSelection();
+                });
+            } else {
+                continueSelection();
+            }
+            
+            function continueSelection() {
+                // 2. 如果当前不在目标系统，切换到目标系统（不清除高亮）
+                if (currentSystem !== system) {
+                    switchSystem(system, true); // true = preserveHighlight
+                    // 更新列表显示搜索结果（而不是清空）
+                    const query = document.getElementById('search-box').value.toLowerCase().trim();
+                    if (query) {
+                        // 重新执行搜索以保持结果显示
+                        performGlobalSearch(query);
+                    }
+                }
+                
+                // 3. 高亮并聚焦到模型
+                document.querySelectorAll('.model-item').forEach(i => i.classList.toggle('active', i.dataset.id === m.id));
+                layerSystem.focusOnModel(m.id, system);
+            }
+        }
+        
+        // 全局toggleLayer函数（供UI调用）
+        function globalToggleLayer(s) { 
+            // 清除高亮
+            layerSystem.clearHighlight();
+            document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active'));
+            const it = document.querySelector(`.layer-item[data-system="${s}"]`), a = it.classList.toggle('active'); 
+            it.querySelector('.layer-checkbox').textContent = a ? '✓' : ''; 
+            layerSystem.toggleLayer(s, a); 
         }
         init();
     </script>

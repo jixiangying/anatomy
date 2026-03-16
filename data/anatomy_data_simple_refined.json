@@ -5329,6 +5329,14 @@
       "nameEn": "right pterygomandibular raphe",
       "nameCn": "右颊咽缝",
       "systemEn": "Muscular System"
+    },
+    {
+      "id": "FJ2762",
+      "name": "腭垂肌 | Uvular muscle",
+      "system": "肌肉系统",
+      "nameEn": "Uvular muscle",
+      "nameCn": "腭垂肌",
+      "systemEn": "Muscular System"
     }
   ],
   "cardiovascular": [
@@ -13999,14 +14007,6 @@
       "systemEn": "Nervous System"
     },
     {
-      "id": "FJ1302",
-      "name": "左鼻泪管 | left nasolacrimal duct",
-      "system": "神经系统",
-      "nameEn": "left nasolacrimal duct",
-      "nameCn": "左鼻泪管",
-      "systemEn": "Nervous System"
-    },
-    {
       "id": "FJ1305",
       "name": "左晶状体 | left lens",
       "system": "神经系统",
@@ -14236,14 +14236,6 @@
       "system": "神经系统",
       "nameEn": "right lacrimal lake",
       "nameCn": "右泪湖",
-      "systemEn": "Nervous System"
-    },
-    {
-      "id": "FJ1353",
-      "name": "右鼻泪管 | right nasolacrimal duct",
-      "system": "神经系统",
-      "nameEn": "right nasolacrimal duct",
-      "nameCn": "右鼻泪管",
       "systemEn": "Nervous System"
     },
     {
@@ -16289,14 +16281,6 @@
       "systemEn": "Digestive System"
     },
     {
-      "id": "FJ2762",
-      "name": "非实质器官 | nonparenchymatous organ",
-      "system": "消化系统",
-      "nameEn": "nonparenchymatous organ",
-      "nameCn": "非实质器官",
-      "systemEn": "Digestive System"
-    },
-    {
       "id": "FJ2765",
       "name": "左舌下腺 | left sublingual gland",
       "system": "消化系统",
@@ -16596,10 +16580,10 @@
     },
     {
       "id": "FJ2440",
-      "name": "非实质器官 | nonparenchymatous organ",
+      "name": "环状软骨 | Cricoid cartilage",
       "system": "呼吸系统",
-      "nameEn": "nonparenchymatous organ",
-      "nameCn": "非实质器官",
+      "nameEn": "Cricoid cartilage",
+      "nameCn": "环状软骨",
       "systemEn": "Respiratory System"
     },
     {
@@ -17436,10 +17420,10 @@
     },
     {
       "id": "FJ2557",
-      "name": "非实质器官 | nonparenchymatous organ",
+      "name": "鼻中隔软骨 | Septal nasal cartilage",
       "system": "呼吸系统",
-      "nameEn": "nonparenchymatous organ",
-      "nameCn": "非实质器官",
+      "nameEn": "Septal nasal cartilage",
+      "nameCn": "鼻中隔软骨",
       "systemEn": "Respiratory System"
     },
     {
@@ -17452,10 +17436,10 @@
     },
     {
       "id": "FJ2769",
-      "name": "非实质器官 | nonparenchymatous organ",
+      "name": "环状软骨 | Cricoid cartilage",
       "system": "呼吸系统",
-      "nameEn": "nonparenchymatous organ",
-      "nameCn": "非实质器官",
+      "nameEn": "Cricoid cartilage",
+      "nameCn": "环状软骨",
       "systemEn": "Respiratory System"
     },
     {
@@ -17596,10 +17580,10 @@
     },
     {
       "id": "FJ2808",
-      "name": "非实质器官 | nonparenchymatous organ",
+      "name": "甲状软骨 | Thyroid cartilage",
       "system": "呼吸系统",
-      "nameEn": "nonparenchymatous organ",
-      "nameCn": "非实质器官",
+      "nameEn": "Thyroid cartilage",
+      "nameCn": "甲状软骨",
       "systemEn": "Respiratory System"
     },
     {
@@ -17616,6 +17600,22 @@
       "system": "呼吸系统",
       "nameEn": "right inferior nasal concha",
       "nameCn": "右下鼻甲",
+      "systemEn": "Respiratory System"
+    },
+    {
+      "id": "FJ1302",
+      "name": "左鼻泪管 | left nasolacrimal duct",
+      "system": "呼吸系统",
+      "nameEn": "left nasolacrimal duct",
+      "nameCn": "左鼻泪管",
+      "systemEn": "Respiratory System"
+    },
+    {
+      "id": "FJ1353",
+      "name": "右鼻泪管 | right nasolacrimal duct",
+      "system": "呼吸系统",
+      "nameEn": "right nasolacrimal duct",
+      "nameCn": "右鼻泪管",
       "systemEn": "Respiratory System"
     }
   ],
@@ -17654,18 +17654,18 @@
     },
     {
       "id": "FJ3148",
-      "name": "有腔器官 | organ with organ cavity",
+      "name": "尿道 | Urethra",
       "system": "泌尿系统",
-      "nameEn": "organ with organ cavity",
-      "nameCn": "有腔器官",
+      "nameEn": "Urethra",
+      "nameCn": "尿道",
       "systemEn": "Urinary System"
     },
     {
       "id": "FJ3149",
-      "name": "有腔器官 | organ with organ cavity",
+      "name": "膀胱 | Urinary bladder",
       "system": "泌尿系统",
-      "nameEn": "organ with organ cavity",
-      "nameCn": "有腔器官",
+      "nameEn": "Urinary bladder",
+      "nameCn": "膀胱",
       "systemEn": "Urinary System"
     }
   ],
@@ -17728,10 +17728,10 @@
     },
     {
       "id": "FJ3139",
-      "name": "实质性器官 | parenchymatous organ",
+      "name": "前列腺 | Prostate",
       "system": "生殖系统",
-      "nameEn": "parenchymatous organ",
-      "nameCn": "实质性器官",
+      "nameEn": "Prostate",
+      "nameCn": "前列腺",
       "systemEn": "Reproductive System"
     },
     {
@@ -17870,18 +17870,18 @@
     },
     {
       "id": "FJ2813",
-      "name": "上皮细分部 | subdivision of epithelium",
+      "name": "头发 | Hair of head",
       "system": "皮肤系统",
-      "nameEn": "subdivision of epithelium",
-      "nameCn": "上皮细分部",
+      "nameEn": "Hair of head",
+      "nameCn": "头发",
       "systemEn": "Integumentary System"
     },
     {
       "id": "FJ2815",
-      "name": "上皮细分部 | subdivision of epithelium",
+      "name": "阴毛 | Pubic hair",
       "system": "皮肤系统",
-      "nameEn": "subdivision of epithelium",
-      "nameCn": "上皮细分部",
+      "nameEn": "Pubic hair",
+      "nameCn": "阴毛",
       "systemEn": "Integumentary System"
     },
     {
