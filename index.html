@@ -85,18 +85,18 @@
 
     <script>
         const SystemConfig = {
-            skeletal: { name: '骨骼系统', color: 0xE8DCC8 },
-            muscular: { name: '肌肉系统', color: 0xC44D4D },
-            cardiovascular: { name: '心血管系统', color: 0xDC143C },
-            nervous: { name: '神经系统', color: 0xFFD700 },
-            digestive: { name: '消化系统', color: 0xD2691E },
-            respiratory: { name: '呼吸系统', color: 0x87CEEB },
-            urinary: { name: '泌尿系统', color: 0xDAA520 },
-            reproductive: { name: '生殖系统', color: 0xFF69B4 },
-            endocrine: { name: '内分泌系统', color: 0x9370DB },
-            lymphatic: { name: '淋巴系统', color: 0x90EE90 },
-            integumentary: { name: '皮肤系统', color: 0xF4A460 },
-            other: { name: '其他', color: 0x808080 }
+            skeletal: { name: '骨骼系统', nameEn: 'Skeletal', color: 0xE8DCC8 },
+            muscular: { name: '肌肉系统', nameEn: 'Muscular', color: 0xC44D4D },
+            cardiovascular: { name: '心血管系统', nameEn: 'Cardiovascular', color: 0xDC143C },
+            nervous: { name: '神经系统', nameEn: 'Nervous', color: 0xFFD700 },
+            digestive: { name: '消化系统', nameEn: 'Digestive', color: 0xD2691E },
+            respiratory: { name: '呼吸系统', nameEn: 'Respiratory', color: 0x87CEEB },
+            urinary: { name: '泌尿系统', nameEn: 'Urinary', color: 0xDAA520 },
+            reproductive: { name: '生殖系统', nameEn: 'Reproductive', color: 0xFF69B4 },
+            endocrine: { name: '内分泌系统', nameEn: 'Endocrine', color: 0x9370DB },
+            lymphatic: { name: '淋巴系统', nameEn: 'Lymphatic', color: 0x90EE90 },
+            integumentary: { name: '皮肤系统', nameEn: 'Integumentary', color: 0xF4A460 },
+            other: { name: '其他', nameEn: 'Other', color: 0x808080 }
         };
         const SystemOrder = Object.keys(SystemConfig);
         let AnatomyData = {}, currentSystem = 'skeletal';
@@ -128,7 +128,7 @@
                 for (let i=0; i<models.length; i+=5) {
                     const batch = models.slice(i, i+5);
                     await Promise.all(batch.map(m => this._loadModel(system, m)));
-                    document.getElementById('loading-text').textContent = `加载 ${SystemConfig[system].name}: ${Math.min(i+5,models.length)}/${models.length}`;
+                    document.getElementById('loading-text').textContent = `Loading ${SystemConfig[system].nameEn}: ${Math.min(i+5,models.length)}/${models.length}`;
                 }
             }
             _loadModel(system, model) {
@@ -179,12 +179,17 @@
 
         function initUI() {
             const tabs = document.getElementById('system-tabs');
-            SystemOrder.forEach(s => { const t = document.createElement('div'); t.className = 'system-tab' + (s==='skeletal'?' active':''); t.textContent = SystemConfig[s].name; t.onclick = () => switchSystem(s); tabs.appendChild(t); });
+            SystemOrder.forEach(s => { 
+                const t = document.createElement('div'); 
+                t.className = 'system-tab' + (s==='skeletal'?' active':''); 
+                t.innerHTML = `<div style="font-size:13px;">${SystemConfig[s].name}</div><div style="font-size:10px; opacity:0.6;">${SystemConfig[s].nameEn}</div>`; 
+                t.onclick = () => switchSystem(s); tabs.appendChild(t); 
+            });
             const layers = document.getElementById('layer-controls');
             SystemOrder.forEach(s => { 
                 const cfg = SystemConfig[s], c = '#' + cfg.color.toString(16).padStart(6,'0'); const d = document.createElement('div'); 
                 d.className = 'layer-item' + (s==='skeletal'?' active':''); d.dataset.system = s; 
-                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name}</div><div style="font-size:10px;color:#71717a">${cfg.count}个</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; 
+                d.innerHTML = `<div style="display:flex;align-items:center;flex:1;min-width:0;"><div class="layer-color" style="background:${c}"></div><div style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><div style="font-size:13px;font-weight:500">${cfg.name} <span style="font-size:11px; font-weight:400; opacity:0.7;">${cfg.nameEn}</span></div><div style="font-size:10px;color:#71717a">${cfg.count} models</div></div></div><div class="layer-checkbox">${s==='skeletal'?'✓':''}</div>`; 
                 d.onclick = () => toggleLayer(s); layers.appendChild(d); 
             });
             document.getElementById('search-box').addEventListener('input', e => { const v = e.target.value.toLowerCase(); document.querySelectorAll('.model-item').forEach(it => it.style.display = it.textContent.toLowerCase().includes(v) ? 'flex' : 'none'); });
