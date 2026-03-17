@@ -9382,10 +9382,10 @@
     },
     {
       "id": "FJ2428",
-      "name": "器官成分区域 | region of organ component",
+      "name": "心室壁 | Wall of ventricle",
       "system": "心血管系统",
-      "nameEn": "region of organ component",
-      "nameCn": "器官成分区域",
+      "nameEn": "Wall of ventricle",
+      "nameCn": "心室壁",
       "systemEn": "Cardiovascular System"
     },
     {
