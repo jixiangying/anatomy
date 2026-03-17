@@ -15610,26 +15610,26 @@
     },
     {
       "id": "FJ2563",
-      "name": "有腔器官 | organ with organ cavity",
+      "name": "食管 | Esophagus",
       "system": "消化系统",
-      "nameEn": "organ with organ cavity",
-      "nameCn": "有腔器官",
+      "nameEn": "Esophagus",
+      "nameCn": "食管",
       "systemEn": "Digestive System"
     },
     {
       "id": "FJ2564",
-      "name": "有腔器官 | organ with organ cavity",
+      "name": "胃 | Stomach",
       "system": "消化系统",
-      "nameEn": "organ with organ cavity",
-      "nameCn": "有腔器官",
+      "nameEn": "Stomach",
+      "nameCn": "胃",
       "systemEn": "Digestive System"
     },
     {
       "id": "FJ2565",
-      "name": "有腔器官 | organ with organ cavity",
+      "name": "阑尾 | Appendix",
       "system": "消化系统",
-      "nameEn": "organ with organ cavity",
-      "nameCn": "有腔器官",
+      "nameEn": "Appendix",
+      "nameCn": "阑尾",
       "systemEn": "Digestive System"
     },
     {
