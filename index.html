@@ -50,6 +50,11 @@
         
         .tooltip { position: fixed; background: rgba(0,0,0,0.9); color: #fff; padding: 8px 12px; border-radius: 6px; font-size: 12px; pointer-events: none; z-index: 100; display: none; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         
+        /* 进度条样式 */
+        .global-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: rgba(59, 130, 246, 0.1); z-index: 2000; display: none; overflow: hidden; }
+        .progress-bar { height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: width 0.3s ease; }
+        .progress-text { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); padding: 4px 12px; border-radius: 20px; font-size: 11px; color: #fff; z-index: 2000; display: none; pointer-events: none; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); }
+        
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
@@ -183,35 +188,32 @@
                 padding: 12px 16px;
             }
             
-            /* 移动端搜索栏 */
+            /* 移动端搜索栏 - 调整为不遮挡画布 */
             .mobile-search-box {
-                display: block !important;
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                z-index: 40;
+                display: none !important; /* 隐藏独立搜索框，改为内置在面板 */
             }
             
-            .mobile-search-box input {
-                width: 100%;
-                background: var(--panel-bg);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255,255,255,0.1);
-                border-radius: 10px;
-                padding: 12px 16px;
-                color: #fff;
-                font-size: 15px;
-                outline: none;
-            }
-            
-            /* 调整3D画布 */
+            /* 调整3D画布，给予更多顶部空间 */
             #canvas-container {
+                top: 0;
                 bottom: 56px;
             }
             
-            /* 加载界面适配 */
-            .loading-overlay { font-size: 14px; }
+            /* 移动端 Tooltip 优化：固定在顶部防止遮挡 */
+            .tooltip {
+                position: fixed;
+                top: 10px !important;
+                left: 10px !important;
+                right: 10px !important;
+                width: auto;
+                bottom: auto;
+                transform: none !important;
+                background: rgba(15, 23, 42, 0.95);
+                border: 1px solid var(--accent);
+                padding: 12px;
+                text-align: center;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            }
         }
         
         /* ==================== 小屏手机 (< 480px) ==================== */
@@ -222,12 +224,11 @@
             .mobile-panel { bottom: 52px; }
             .mobile-panel-header { padding: 10px 12px; }
             .mobile-panel-title { font-size: 15px; }
-            .mobile-panel-content { padding: 10px 12px; }
-            .mobile-search-box input { padding: 10px 14px; font-size: 14px; }
-            .system-tabs { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-            .system-tab { padding: 10px 6px; font-size: 12px; }
-            .model-item { padding: 12px; font-size: 14px; }
-            .layer-item { padding: 10px 0; }
+            .mobile-panel-content { padding: 8px 10px; }
+            .system-tabs { grid-template-columns: repeat(2, 1fr); gap: 4px; }
+            .system-tab { padding: 8px 4px; font-size: 11px; }
+            .model-item { padding: 10px; font-size: 13px; }
+            .layer-item { padding: 8px 0; }
             h1 { font-size: 16px !important; }
         }
         
@@ -256,6 +257,10 @@
 
     <div id="canvas-container"></div>
     <div id="tooltip" class="tooltip"></div>
+    
+    <!-- 全局加载进度 -->
+    <div id="global-progress" class="global-progress"><div id="progress-bar" class="progress-bar"></div></div>
+    <div id="progress-text" class="progress-text"></div>
 
     <div class="ui-layer sidebar">
         <div class="sidebar-header">
@@ -286,6 +291,8 @@
             <div class="mobile-panel-close" onclick="closeMobilePanel()">✕</div>
         </div>
         <div class="mobile-panel-content">
+            <!-- 移动端搜索内置在面板中 -->
+            <input type="text" id="mobile-search" class="search-box" style="display:block; width:100%; margin-bottom:15px; pointer-events:auto;" placeholder="搜索模型名称或ID...">
             <div class="system-tabs" id="mobile-system-tabs"></div>
             <div class="model-list" id="mobile-model-list" style="margin-top: 10px;"></div>
         </div>
@@ -359,11 +366,41 @@
             async loadSystem(system) {
                 if (!AnatomyData[system]) return;
                 const models = AnatomyData[system];
+                const progressBar = document.getElementById('progress-bar');
+                const progressContainer = document.getElementById('global-progress');
+                const progressText = document.getElementById('progress-text');
+                
+                // 显示进度条
+                progressContainer.style.display = 'block';
+                progressText.style.display = 'block';
+                
+                let loadedInThisSession = 0;
+                const totalInSystem = models.length;
+
                 for (let i=0; i<models.length; i+=5) {
                     const batch = models.slice(i, i+5);
                     await Promise.all(batch.map(m => this._loadModel(system, m)));
-                    document.getElementById('loading-text').textContent = `Loading ${SystemConfig[system].nameEn}: ${Math.min(i+5,models.length)}/${models.length}`;
+                    
+                    loadedInThisSession += batch.length;
+                    const percent = Math.round((loadedInThisSession / totalInSystem) * 100);
+                    
+                    // 更新进度条 UI
+                    progressBar.style.width = percent + '%';
+                    progressText.textContent = `正在载入 ${SystemConfig[system].name}: ${percent}%`;
+                    
+                    // 同步更新初始加载遮罩的文字
+                    const loadingText = document.getElementById('loading-text');
+                    if (loadingText) loadingText.textContent = `Loading ${SystemConfig[system].nameEn}: ${loadedInThisSession}/${totalInSystem}`;
                 }
+                
+                // 加载完成后，延迟隐藏进度条
+                setTimeout(() => {
+                    if (percent >= 100) {
+                        progressContainer.style.display = 'none';
+                        progressText.style.display = 'none';
+                        progressBar.style.width = '0%';
+                    }
+                }, 1000);
             }
             _loadModel(system, model) {
                 if (this.loadedModels[system].has(model.id)) return Promise.resolve();
@@ -667,7 +704,7 @@
             renderer = new THREE.WebGLRenderer({antialias:true}); renderer.setSize(window.innerWidth, window.innerHeight); c.appendChild(renderer.domElement);
             scene.add(new THREE.AmbientLight(0xffffff,0.4)); const ml = new THREE.DirectionalLight(0xffffff,0.8); ml.position.set(50,100,50); scene.add(ml);
             const fl = new THREE.DirectionalLight(0x8b9dc3,0.3); fl.position.set(-50,0,-50); scene.add(fl);
-            controls = new THREE.OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.target.set(0,70,0);
+            controls = new THREE.OrbitControls(camera, renderer.domElement); controls.enableDamping = true; controls.target.set(0,85,0);
             raycaster = new THREE.Raycaster(); mouse = new THREE.Vector2(); layerSystem = new LayerControlSystem(scene, camera, renderer, controls);
             (function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene,camera); })();
             window.addEventListener('resize', () => { camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); });
@@ -675,27 +712,83 @@
 
         function setupInteraction() {
             const canvas = document.getElementById('canvas-container');
+            
+            // 处理鼠标移动（仅限 PC 端悬停显示）
             canvas.addEventListener('mousemove', e => { 
-                mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; 
+                if (window.innerWidth <= 768) return; // 移动端跳过悬停逻辑
+                mouse.x = (e.clientX/window.innerWidth)*2-1; 
+                mouse.y = -(e.clientY/window.innerHeight)*2+1; 
                 const res = layerSystem.raycast(mouse); 
                 if (res) { 
-                    tooltip.style.display = 'block'; tooltip.style.left = e.clientX + 15 + 'px'; tooltip.style.top = e.clientY + 15 + 'px'; 
-                    const [cn, en] = res.name.includes(' | ') ? res.name.split(' | ') : [res.name, ''];
-                    tooltip.innerHTML = `<div style="color:#fbbf24;font-family:monospace;font-weight:bold;font-size:11px;">${res.id}</div><div style="font-weight:bold;">${cn}</div><div style="font-size:11px;color:#aaa;">${en}</div>`;
+                    showTooltip(e.clientX, e.clientY, res);
                     canvas.style.cursor = 'pointer'; 
-                } else { tooltip.style.display = 'none'; canvas.style.cursor = 'default'; } 
+                } else { 
+                    tooltip.style.display = 'none'; 
+                    canvas.style.cursor = 'default'; 
+                } 
             });
-            canvas.addEventListener('click', e => { 
-                mouse.x = (e.clientX/window.innerWidth)*2-1; mouse.y = -(e.clientY/window.innerHeight)*2+1; 
-                const res = layerSystem.raycast(mouse); 
-                if (res) {
-                    selectModelByData(res);
-                } else {
-                    // 点击空白处，清除高亮
-                    layerSystem.clearHighlight();
-                    document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active'));
+
+            // 处理点击和触碰（统一使用 PointerEvent）
+            let pointerDownTime = 0;
+            let pointerDownPos = { x: 0, y: 0 };
+
+            canvas.addEventListener('pointerdown', e => {
+                pointerDownTime = Date.now();
+                pointerDownPos = { x: e.clientX, y: e.clientY };
+            });
+
+            canvas.addEventListener('pointerup', e => {
+                const duration = Date.now() - pointerDownTime;
+                const distance = Math.sqrt(Math.pow(e.clientX - pointerDownPos.x, 2) + Math.pow(e.clientY - pointerDownPos.y, 2));
+                
+                // 判定为“点击/轻点”而非“拖拽/旋转”（时长<300ms 且 移动距离<10px）
+                if (duration < 300 && distance < 10) {
+                    mouse.x = (e.clientX/window.innerWidth)*2-1; 
+                    mouse.y = -(e.clientY/window.innerHeight)*2+1; 
+                    const res = layerSystem.raycast(mouse); 
+                    
+                    if (res) {
+                        selectModelByData(res);
+                        // 移动端点击后显示悬浮信息
+                        if (window.innerWidth <= 768) {
+                            showTooltip(e.clientX, e.clientY, res);
+                        }
+                    } else {
+                        // 点击空白处，清除高亮并隐藏悬浮窗
+                        layerSystem.clearHighlight();
+                        document.querySelectorAll('.model-item').forEach(i => i.classList.remove('active'));
+                        tooltip.style.display = 'none';
+                    }
                 }
             });
+        }
+
+        function showTooltip(x, y, res) {
+            const [cn, en] = res.name.includes(' | ') ? res.name.split(' | ') : [res.name, ''];
+            tooltip.style.display = 'block';
+            
+            if (window.innerWidth <= 768) {
+                // 移动端：固定在顶部
+                tooltip.style.left = '10px';
+                tooltip.style.top = '10px';
+                tooltip.style.right = '10px';
+                tooltip.style.width = 'calc(100% - 20px)';
+            } else {
+                // PC端：跟随鼠标
+                const rect = tooltip.getBoundingClientRect();
+                let left = x + 15;
+                let top = y + 15;
+                if (left + 180 > window.innerWidth) left = window.innerWidth - 190;
+                if (top + 100 > window.innerHeight) top = window.innerHeight - 110;
+                
+                tooltip.style.left = left + 'px';
+                tooltip.style.top = top + 'px';
+                tooltip.style.width = 'auto';
+                tooltip.style.right = 'auto';
+            }
+            
+            tooltip.style.whiteSpace = 'pre-line';
+            tooltip.innerHTML = `<div style="color:#fbbf24;font-family:monospace;font-weight:bold;font-size:11px;">${res.id}</div><div style="font-weight:bold;">${cn}</div><div style="font-size:11px;color:#aaa;">${en}</div>`;
         }
 
         function switchSystem(s, preserveHighlight = false) { 
