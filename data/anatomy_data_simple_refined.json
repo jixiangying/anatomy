@@ -15594,10 +15594,10 @@
     },
     {
       "id": "FJ1895",
-      "name": "实质性器官 | parenchymatous organ",
+      "name": "胰腺 | Pancreas",
       "system": "消化系统",
-      "nameEn": "parenchymatous organ",
-      "nameCn": "实质性器官",
+      "nameEn": "Pancreas",
+      "nameCn": "胰腺",
       "systemEn": "Digestive System"
     },
     {
@@ -17794,10 +17794,10 @@
     },
     {
       "id": "FJ1796",
-      "name": "实质性器官 | parenchymatous organ",
+      "name": "垂体 | Pituitary gland",
       "system": "内分泌系统",
-      "nameEn": "parenchymatous organ",
-      "nameCn": "实质性器官",
+      "nameEn": "Pituitary gland",
+      "nameCn": "垂体",
       "systemEn": "Endocrine System"
     }
   ],
