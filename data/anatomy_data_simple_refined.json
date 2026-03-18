@@ -6646,10 +6646,10 @@
     },
     {
       "id": "FJ1853",
-      "name": "血管树器官区域 | region of vascular tree organ",
+      "name": "肝门静脉 | Hepatic portal vein",
       "system": "心血管系统",
-      "nameEn": "region of vascular tree organ",
-      "nameCn": "血管树器官区域",
+      "nameEn": "Hepatic portal vein",
+      "nameCn": "肝门静脉",
       "systemEn": "Cardiovascular System"
     },
     {
@@ -15666,10 +15666,10 @@
     },
     {
       "id": "FJ2573",
-      "name": "器官区域 | organ region",
+      "name": "十二指肠 | Duodenum",
       "system": "消化系统",
-      "nameEn": "organ region",
-      "nameCn": "器官区域",
+      "nameEn": "Duodenum",
+      "nameCn": "十二指肠",
       "systemEn": "Digestive System"
     },
     {
